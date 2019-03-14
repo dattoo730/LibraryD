@@ -31,5 +31,17 @@ namespace LibraryManagement.BUS
             data.DisplayMember = "bookTitle";
             data.ValueMember = "bookID";
         }
+        public void ShowAllBookstne(ComboBox data)
+        {
+            data.DataSource = BookDAO.Instance.ShowAllBooks();
+            data.DisplayMember = "bookTitle";
+            data.ValueMember = "bookID";
+        }
+        public void gfggg(ComboBox data)
+        {
+            data.DataSource = BookDAO.Instance.ShowAllBooks();
+            data.DisplayMember = "bookTitle";
+            data.ValueMember = "bookID";
+        }
     }
 }
