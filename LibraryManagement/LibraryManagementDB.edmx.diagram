@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5147364448d419a87ad2399cdb9f6d2" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryManagementModel.Book" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Borrower" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Category" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.DetailOrder" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Librarian" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.OrderTbl" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.StatusObject" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.SupplyHistory" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="LibraryManagementModel.FK__DetailOrd__bookI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.fk_Book_id_category" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.fk_Book_id_SupplyHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__OrderTbl__borrow__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__DetailOrd__order__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.fk_Librarian_id_Ordertbl" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.fk_Librarian_id_SupplyHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.fk_Status_id_Ordertbl" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="bookID" />
+          </Key>
+          <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bookTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" />
+          <Property Name="isbn" Type="nvarchar" MaxLength="13" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="categoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Borrower">
+          <Key>
+            <PropertyRef Name="borrowerID" />
+          </Key>
+          <Property Name="borrowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="borrowerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="borrowerBirthDate" Type="datetime" />
+          <Property Name="borrowerGender" Type="nvarchar" MaxLength="10" />
+          <Property Name="borrowerAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="borrowerPhone" Type="nvarchar" MaxLength="10" />
+          <Property Name="borrowerEmail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="int" Nullable="false" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="DetailOrder">
+          <Key>
+            <PropertyRef Name="orderID" />
+            <PropertyRef Name="bookID" />
+          </Key>
+          <Property Name="orderID" Type="int" Nullable="false" />
+          <Property Name="bookID" Type="int" Nullable="false" />
+          <Property Name="quantityBorrowed" Type="int" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="librarianID" />
+          </Key>
+          <Property Name="librarianID" Type="int" Nullable="false" />
+          <Property Name="librarianPass" Type="varchar" MaxLength="30" />
+          <Property Name="librarianName" Type="nvarchar" MaxLength="50" />
+          <Property Name="librarianSex" Type="int" />
+          <Property Name="librarianAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="librarianPhone" Type="varchar" MaxLength="10" />
+          <Property Name="librarianEmail" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderTbl">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateBorrowed" Type="date" />
+          <Property Name="borrowerID" Type="int" />
+          <Property Name="returnDate" Type="datetime" />
+          <Property Name="status" Type="int" />
+          <Property Name="librarianID" Type="int" />
+        </EntityType>
+        <EntityType Name="StatusObject">
+          <Key>
+            <PropertyRef Name="statusID" />
+          </Key>
+          <Property Name="statusID" Type="int" Nullable="false" />
+          <Property Name="statusName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SupplyHistory">
+          <Key>
+            <PropertyRef Name="supplyID" />
+          </Key>
+          <Property Name="supplyID" Type="int" Nullable="false" />
+          <Property Name="bookID" Type="int" />
+          <Property Name="librarianID" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="supplyDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__DetailOrd__bookI__47DBAE45">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="bookID" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="bookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailOrd__order__46E78A0C">
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="1" />
+          <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTbl">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTbl__borrow__4222D4EF">
+          <End Role="Borrower" Type="Self.Borrower" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrower">
+              <PropertyRef Name="borrowerID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="borrowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Book_id_category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Book_id_SupplyHistory">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="SupplyHistory" Type="Self.SupplyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="bookID" />
+            </Principal>
+            <Dependent Role="SupplyHistory">
+              <PropertyRef Name="bookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Librarian_id_Ordertbl">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="librarianID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="librarianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Librarian_id_SupplyHistory">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="SupplyHistory" Type="Self.SupplyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="librarianID" />
+            </Principal>
+            <Dependent Role="SupplyHistory">
+              <PropertyRef Name="librarianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Status_id_Ordertbl">
+          <End Role="StatusObject" Type="Self.StatusObject" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusObject">
+              <PropertyRef Name="statusID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryManagementModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrower" EntityType="Self.Borrower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailOrder" EntityType="Self.DetailOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Librarian" EntityType="Self.Librarian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTbl" EntityType="Self.OrderTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusObject" EntityType="Self.StatusObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplyHistory" EntityType="Self.SupplyHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="DetailOrder" EntitySet="DetailOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailOrd__order__46E78A0C" Association="Self.FK__DetailOrd__order__46E78A0C">
+            <End Role="OrderTbl" EntitySet="OrderTbl" />
+            <End Role="DetailOrder" EntitySet="DetailOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTbl__borrow__4222D4EF" Association="Self.FK__OrderTbl__borrow__4222D4EF">
+            <End Role="Borrower" EntitySet="Borrower" />
+            <End Role="OrderTbl" EntitySet="OrderTbl" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Book_id_category" Association="Self.fk_Book_id_category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Book_id_SupplyHistory" Association="Self.fk_Book_id_SupplyHistory">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="SupplyHistory" EntitySet="SupplyHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Librarian_id_Ordertbl" Association="Self.fk_Librarian_id_Ordertbl">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="OrderTbl" EntitySet="OrderTbl" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Librarian_id_SupplyHistory" Association="Self.fk_Librarian_id_SupplyHistory">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="SupplyHistory" EntitySet="SupplyHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Status_id_Ordertbl" Association="Self.fk_Status_id_Ordertbl">
+            <End Role="StatusObject" EntitySet="StatusObject" />
+            <End Role="OrderTbl" EntitySet="OrderTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="bookID" />
+          </Key>
+          <Property Name="bookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bookTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="categoryID" Type="Int32" />
+          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__bookI__47DBAE45" FromRole="Book" ToRole="DetailOrder" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_Book_id_category" FromRole="Book" ToRole="Category" />
+          <NavigationProperty Name="SupplyHistories" Relationship="Self.fk_Book_id_SupplyHistory" FromRole="Book" ToRole="SupplyHistory" />
+        </EntityType>
+        <EntityType Name="Borrower">
+          <Key>
+            <PropertyRef Name="borrowerID" />
+          </Key>
+          <Property Name="borrowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="borrowerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerBirthDate" Type="DateTime" Precision="3" />
+          <Property Name="borrowerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderTbls" Relationship="Self.FK__OrderTbl__borrow__4222D4EF" FromRole="Borrower" ToRole="OrderTbl" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.fk_Book_id_category" FromRole="Category" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="DetailOrder">
+          <Key>
+            <PropertyRef Name="orderID" />
+            <PropertyRef Name="bookID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" />
+          <Property Name="bookID" Type="Int32" Nullable="false" />
+          <Property Name="quantityBorrowed" Type="Int32" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__DetailOrd__bookI__47DBAE45" FromRole="DetailOrder" ToRole="Book" />
+          <NavigationProperty Name="OrderTbl" Relationship="Self.FK__DetailOrd__order__46E78A0C" FromRole="DetailOrder" ToRole="OrderTbl" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="librarianID" />
+          </Key>
+          <Property Name="librarianID" Type="Int32" Nullable="false" />
+          <Property Name="librarianPass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="librarianName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="librarianSex" Type="Int32" />
+          <Property Name="librarianAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="librarianPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="librarianEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderTbls" Relationship="Self.fk_Librarian_id_Ordertbl" FromRole="Librarian" ToRole="OrderTbl" />
+          <NavigationProperty Name="SupplyHistories" Relationship="Self.fk_Librarian_id_SupplyHistory" FromRole="Librarian" ToRole="SupplyHistory" />
+        </EntityType>
+        <EntityType Name="OrderTbl">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateBorrowed" Type="DateTime" Precision="0" />
+          <Property Name="borrowerID" Type="Int32" />
+          <Property Name="returnDate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="librarianID" Type="Int32" />
+          <NavigationProperty Name="Borrower" Relationship="Self.FK__OrderTbl__borrow__4222D4EF" FromRole="OrderTbl" ToRole="Borrower" />
+          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__order__46E78A0C" FromRole="OrderTbl" ToRole="DetailOrder" />
+          <NavigationProperty Name="Librarian" Relationship="Self.fk_Librarian_id_Ordertbl" FromRole="OrderTbl" ToRole="Librarian" />
+          <NavigationProperty Name="StatusObject" Relationship="Self.fk_Status_id_Ordertbl" FromRole="OrderTbl" ToRole="StatusObject" />
+        </EntityType>
+        <EntityType Name="StatusObject">
+          <Key>
+            <PropertyRef Name="statusID" />
+          </Key>
+          <Property Name="statusID" Type="Int32" Nullable="false" />
+          <Property Name="statusName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderTbls" Relationship="Self.fk_Status_id_Ordertbl" FromRole="StatusObject" ToRole="OrderTbl" />
+        </EntityType>
+        <EntityType Name="SupplyHistory">
+          <Key>
+            <PropertyRef Name="supplyID" />
+          </Key>
+          <Property Name="supplyID" Type="Int32" Nullable="false" />
+          <Property Name="bookID" Type="Int32" />
+          <Property Name="librarianID" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="supplyDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Book" Relationship="Self.fk_Book_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Book" />
+          <NavigationProperty Name="Librarian" Relationship="Self.fk_Librarian_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Librarian" />
+        </EntityType>
+        <Association Name="FK__DetailOrd__bookI__47DBAE45">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="bookID" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="bookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Book_id_category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Book_id_SupplyHistory">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="SupplyHistory" Type="Self.SupplyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="bookID" />
+            </Principal>
+            <Dependent Role="SupplyHistory">
+              <PropertyRef Name="bookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTbl__borrow__4222D4EF">
+          <End Role="Borrower" Type="Self.Borrower" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrower">
+              <PropertyRef Name="borrowerID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="borrowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailOrd__order__46E78A0C">
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="1" />
+          <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTbl">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Librarian_id_Ordertbl">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="librarianID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="librarianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Librarian_id_SupplyHistory">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="SupplyHistory" Type="Self.SupplyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="librarianID" />
+            </Principal>
+            <Dependent Role="SupplyHistory">
+              <PropertyRef Name="librarianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Status_id_Ordertbl">
+          <End Role="StatusObject" Type="Self.StatusObject" Multiplicity="0..1" />
+          <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusObject">
+              <PropertyRef Name="statusID" />
+            </Principal>
+            <Dependent Role="OrderTbl">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Borrowers" EntityType="Self.Borrower" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="DetailOrders" EntityType="Self.DetailOrder" />
+          <EntitySet Name="Librarians" EntityType="Self.Librarian" />
+          <EntitySet Name="OrderTbls" EntityType="Self.OrderTbl" />
+          <EntitySet Name="StatusObjects" EntityType="Self.StatusObject" />
+          <EntitySet Name="SupplyHistories" EntityType="Self.SupplyHistory" />
+          <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="DetailOrder" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Book_id_category" Association="Self.fk_Book_id_category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Book_id_SupplyHistory" Association="Self.fk_Book_id_SupplyHistory">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="SupplyHistory" EntitySet="SupplyHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTbl__borrow__4222D4EF" Association="Self.FK__OrderTbl__borrow__4222D4EF">
+            <End Role="Borrower" EntitySet="Borrowers" />
+            <End Role="OrderTbl" EntitySet="OrderTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailOrd__order__46E78A0C" Association="Self.FK__DetailOrd__order__46E78A0C">
+            <End Role="OrderTbl" EntitySet="OrderTbls" />
+            <End Role="DetailOrder" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Librarian_id_Ordertbl" Association="Self.fk_Librarian_id_Ordertbl">
+            <End Role="Librarian" EntitySet="Librarians" />
+            <End Role="OrderTbl" EntitySet="OrderTbls" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Librarian_id_SupplyHistory" Association="Self.fk_Librarian_id_SupplyHistory">
+            <End Role="Librarian" EntitySet="Librarians" />
+            <End Role="SupplyHistory" EntitySet="SupplyHistories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Status_id_Ordertbl" Association="Self.fk_Status_id_Ordertbl">
+            <End Role="StatusObject" EntitySet="StatusObjects" />
+            <End Role="OrderTbl" EntitySet="OrderTbls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryManagementModelStoreContainer" CdmEntityContainer="LibraryManagementEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="bookID" ColumnName="bookID" />
+                <ScalarProperty Name="bookTitle" ColumnName="bookTitle" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowers">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Borrower">
+              <MappingFragment StoreEntitySet="Borrower">
+                <ScalarProperty Name="borrowerID" ColumnName="borrowerID" />
+                <ScalarProperty Name="borrowerName" ColumnName="borrowerName" />
+                <ScalarProperty Name="borrowerBirthDate" ColumnName="borrowerBirthDate" />
+                <ScalarProperty Name="borrowerGender" ColumnName="borrowerGender" />
+                <ScalarProperty Name="borrowerAddress" ColumnName="borrowerAddress" />
+                <ScalarProperty Name="borrowerPhone" ColumnName="borrowerPhone" />
+                <ScalarProperty Name="borrowerEmail" ColumnName="borrowerEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailOrders">
+            <EntityTypeMapping TypeName="LibraryManagementModel.DetailOrder">
+              <MappingFragment StoreEntitySet="DetailOrder">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="bookID" ColumnName="bookID" />
+                <ScalarProperty Name="quantityBorrowed" ColumnName="quantityBorrowed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Librarians">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Librarian">
+              <MappingFragment StoreEntitySet="Librarian">
+                <ScalarProperty Name="librarianID" ColumnName="librarianID" />
+                <ScalarProperty Name="librarianPass" ColumnName="librarianPass" />
+                <ScalarProperty Name="librarianName" ColumnName="librarianName" />
+                <ScalarProperty Name="librarianSex" ColumnName="librarianSex" />
+                <ScalarProperty Name="librarianAddress" ColumnName="librarianAddress" />
+                <ScalarProperty Name="librarianPhone" ColumnName="librarianPhone" />
+                <ScalarProperty Name="librarianEmail" ColumnName="librarianEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTbls">
+            <EntityTypeMapping TypeName="LibraryManagementModel.OrderTbl">
+              <MappingFragment StoreEntitySet="OrderTbl">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="dateBorrowed" ColumnName="dateBorrowed" />
+                <ScalarProperty Name="borrowerID" ColumnName="borrowerID" />
+                <ScalarProperty Name="returnDate" ColumnName="returnDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="librarianID" ColumnName="librarianID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusObjects">
+            <EntityTypeMapping TypeName="LibraryManagementModel.StatusObject">
+              <MappingFragment StoreEntitySet="StatusObject">
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="statusName" ColumnName="statusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplyHistories">
+            <EntityTypeMapping TypeName="LibraryManagementModel.SupplyHistory">
+              <MappingFragment StoreEntitySet="SupplyHistory">
+                <ScalarProperty Name="supplyID" ColumnName="supplyID" />
+                <ScalarProperty Name="bookID" ColumnName="bookID" />
+                <ScalarProperty Name="librarianID" ColumnName="librarianID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="supplyDate" ColumnName="supplyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
