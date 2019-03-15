@@ -33,10 +33,7 @@ namespace LibraryManagement.GUI
             if (string.IsNullOrEmpty(borrowerIdTxt.Text.Trim()))
             {
                 errorProvider1.SetError(borrowerIdTxt, "Borrower Id is required.");
-               // e.fo
                 e.Cancel = true;
-                
-                //  borrowerIdTxt.Focus();
             }
             else
             {
@@ -47,7 +44,11 @@ namespace LibraryManagement.GUI
 
         private void makeOrderBtn_Click(object sender, EventArgs e)
         {
-           
+            if (this.ValidateChildren())
+            {
+                BorrowingBookBUS.Instance.MakeBookBorrowingOrder(booksDgv, borrowerIdTxt, librarianIdTxt);
+            }
+            
         }
 
         private void quantityBookTxt_Validating(object sender, CancelEventArgs e)
@@ -110,6 +111,21 @@ namespace LibraryManagement.GUI
         private void chooseBookCb_KeyPress(object sender, KeyPressEventArgs e)
         {
           
+        }
+
+        private void BorrowBooks_Shown(object sender, EventArgs e)
+        {
+            borrowerIdTxt.Focus();
+        }
+
+        private void borrowerIdTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void borrowerIdTxt_KeyUp(object sender, KeyEventArgs e)
+        {
+            BorrowingBookBUS.Instance.SetBorrowerNameByID(borrowerIdTxt, borrowerNameTxt);
         }
     }
 }

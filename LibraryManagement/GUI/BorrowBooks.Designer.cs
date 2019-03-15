@@ -54,6 +54,8 @@
             this.chooseBookCb = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
@@ -62,7 +64,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 38);
+            this.label1.Location = new System.Drawing.Point(16, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 0;
@@ -70,16 +72,18 @@
             // 
             // borrowerIdTxt
             // 
-            this.borrowerIdTxt.Location = new System.Drawing.Point(119, 34);
+            this.borrowerIdTxt.Location = new System.Drawing.Point(119, 18);
             this.borrowerIdTxt.Name = "borrowerIdTxt";
             this.borrowerIdTxt.Size = new System.Drawing.Size(162, 20);
             this.borrowerIdTxt.TabIndex = 1;
+            this.borrowerIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.borrowerIdTxt_KeyPress);
+            this.borrowerIdTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.borrowerIdTxt_KeyUp);
             this.borrowerIdTxt.Validating += new System.ComponentModel.CancelEventHandler(this.borrowerIdTxt_Validating);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(315, 38);
+            this.label2.Location = new System.Drawing.Point(315, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 0;
@@ -87,7 +91,8 @@
             // 
             // borrowerNameTxt
             // 
-            this.borrowerNameTxt.Location = new System.Drawing.Point(398, 34);
+            this.borrowerNameTxt.Enabled = false;
+            this.borrowerNameTxt.Location = new System.Drawing.Point(398, 18);
             this.borrowerNameTxt.Name = "borrowerNameTxt";
             this.borrowerNameTxt.ReadOnly = true;
             this.borrowerNameTxt.Size = new System.Drawing.Size(149, 20);
@@ -173,7 +178,7 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(0, 414);
+            this.label8.Location = new System.Drawing.Point(-5, 414);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(647, 10);
             this.label8.TabIndex = 0;
@@ -216,9 +221,9 @@
             // 
             // makeOrderBtn
             // 
-            this.makeOrderBtn.Location = new System.Drawing.Point(473, 363);
+            this.makeOrderBtn.Location = new System.Drawing.Point(470, 360);
             this.makeOrderBtn.Name = "makeOrderBtn";
-            this.makeOrderBtn.Size = new System.Drawing.Size(75, 33);
+            this.makeOrderBtn.Size = new System.Drawing.Size(78, 41);
             this.makeOrderBtn.TabIndex = 5;
             this.makeOrderBtn.Text = "Borrow";
             this.makeOrderBtn.UseVisualStyleBackColor = true;
@@ -244,6 +249,22 @@
             // 
             this.errorProvider2.ContainerControl = this;
             // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(-13, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(647, 10);
+            this.label10.TabIndex = 0;
+            this.label10.Text = resources.GetString("label10.Text");
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(-13, 44);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(647, 10);
+            this.label11.TabIndex = 0;
+            this.label11.Text = resources.GetString("label11.Text");
+            // 
             // BorrowBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +280,8 @@
             this.Controls.Add(this.librarianNameTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.librarianIdTxt);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.borrowerNameTxt);
@@ -268,8 +291,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.borrowerIdTxt);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(586, 489);
+            this.MinimumSize = new System.Drawing.Size(586, 489);
             this.Name = "BorrowBooks";
             this.Text = "Borrow Books";
+            this.Shown += new System.EventHandler(this.BorrowBooks_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
@@ -301,5 +327,7 @@
         private System.Windows.Forms.ComboBox chooseBookCb;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

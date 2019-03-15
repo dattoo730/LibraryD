@@ -108,6 +108,89 @@ namespace LibraryManagement.BUS
             else
                 return false;
         }
+        public Borrower SearchBorrowerByID(TextBox borrowerIdtxt)
+        {
+            try
+            {
+                if (CheckIsNumber(borrowerIdtxt.Text) && !String.IsNullOrEmpty(borrowerIdtxt.Text))
+                {
+                    Borrower b = new Borrower();
+                    var a = BorrowerDAO.Instance.SearchBorrowerID(Convert.ToInt32(borrowerIdtxt.Text));
+                    if (a != null)
+                    {
+                        b.borrowerID = a.BorrowerID;
+                        b.borrowerName = a.BorrowerName;
+                    }
+                    return b;
+                }
+                return null;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+           
+        }
 
+        public void SetBorrowerNameByID(TextBox borrowerIdtxt, TextBox borrowerNameTxt)
+        {
+            var temp = SearchBorrowerByID(borrowerIdtxt);
+            if (temp != null)
+                borrowerNameTxt.Text = temp.borrowerName;
+            else
+                borrowerNameTxt.Text = null;
+        }
+
+        private bool CheckIsNumber(string input)
+        {
+            if (input.All(char.IsDigit)) return true;
+            return false;
+        }
+        public void MakeBookBorrowingOrder(DataGridView dataDgv,
+                                           TextBox borrowerIdTxt, TextBox LibrarianIdTxt)
+        {
+            if (CheckSessionIsvalid())
+            {
+                if(!String.IsNullOrEmpty(borrowerIdTxt.Text)&& !String.IsNullOrEmpty(LibrarianIdTxt.Text))
+                {
+                    var a = dataDgv.RowCount;
+                    if (CheckIsNumber(borrowerIdTxt.Text) && CheckIsNumber(LibrarianIdTxt.Text) && dataDgv.RowCount > 1)
+                    {
+                        OrdersDTO ordersDto = new OrdersDTO();
+
+                        ordersDto.BorrowerID = Convert.ToInt32(borrowerIdTxt.Text);
+                        ordersDto.LibrarianID = Convert.ToInt32(LibrarianIdTxt.Text);
+                        ordersDto.DateBorrowed = DateTime.Now;
+                        ordersDto.ReturnDate = null;
+                        ordersDto.Status = 1;//Dang muon; =2 da tra
+                        
+                        List<DetailOrdersDTO> detailOrdersDtoLst = new List<DetailOrdersDTO>();
+                        for(int i = 0;i < dataDgv.RowCount-1;i++)
+                        {
+                           DetailOrdersDTO d = new DetailOrdersDTO();
+                           d.BookId = Convert.ToInt32(dataDgv.Rows[i].Cells[0].Value.ToString());
+                           d.QuantityBorrowed = Convert.ToInt32(dataDgv.Rows[i].Cells[2].Value.ToString());
+                           detailOrdersDtoLst.Add(d);
+                        }                    
+                        
+                        var temp = OrdersDAO.Instance.InsertNewOrder(detailOrdersDtoLst,ordersDto);
+                        if (temp.isSuccess)                       
+                            MessageBox.Show("Done!");
+                        else
+                            MessageBox.Show(temp.returnMessage);
+
+                    }
+                }
+               
+                   
+            }
+            else
+                MessageBox.Show("Invalid session! Please Logout and Relogin.");
+        }
+
+        public void MakeDetailBookBorrowingOrder(DataGridView dataDgv)
+        {
+           
+        }
     }
 }

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="bookID" />
           </Key>
-          <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bookID" Type="int" Nullable="false" />
           <Property Name="bookTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="author" Type="nvarchar" MaxLength="50" />
           <Property Name="isbn" Type="nvarchar" MaxLength="13" />
@@ -20,7 +20,7 @@
           <Key>
             <PropertyRef Name="borrowerID" />
           </Key>
-          <Property Name="borrowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="borrowerID" Type="int" Nullable="false" />
           <Property Name="borrowerName" Type="nvarchar" MaxLength="50" />
           <Property Name="borrowerBirthDate" Type="datetime" />
           <Property Name="borrowerGender" Type="nvarchar" MaxLength="10" />
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
-          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="int" Nullable="false" />
           <Property Name="dateBorrowed" Type="date" />
           <Property Name="borrowerID" Type="int" />
           <Property Name="returnDate" Type="datetime" />
@@ -231,7 +231,7 @@
           <Key>
             <PropertyRef Name="bookID" />
           </Key>
-          <Property Name="bookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bookID" Type="Int32" Nullable="false" />
           <Property Name="bookTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
@@ -245,7 +245,7 @@
           <Key>
             <PropertyRef Name="borrowerID" />
           </Key>
-          <Property Name="borrowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="borrowerID" Type="Int32" Nullable="false" />
           <Property Name="borrowerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="borrowerBirthDate" Type="DateTime" Precision="3" />
           <Property Name="borrowerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -291,7 +291,7 @@
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
-          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="Int32" Nullable="false" />
           <Property Name="dateBorrowed" Type="DateTime" Precision="0" />
           <Property Name="borrowerID" Type="Int32" />
           <Property Name="returnDate" Type="DateTime" Precision="3" />

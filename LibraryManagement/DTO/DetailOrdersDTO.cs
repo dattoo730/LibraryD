@@ -15,7 +15,10 @@ namespace LibraryManagement.DTO
         public int OrderId { get => orderId; set => orderId = value; }
         public int BookId { get => bookId; set => bookId = value; }
         public Nullable<int> QuantityBorrowed { get => quantityBorrowed; set => quantityBorrowed = value; }
+        public DetailOrdersDTO()
+        {
 
+        }
         public DetailOrdersDTO(int orderId, int bookId, int? quantityBorrowed)
         {
             this.orderId = orderId;

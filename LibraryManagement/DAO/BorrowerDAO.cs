@@ -51,9 +51,13 @@ namespace LibraryManagement.DAO
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
                 Borrower b = entities.Borrowers.Where(x => x.borrowerID == id).FirstOrDefault();
-                BorrowerDTO b1 = new BorrowerDTO(b);
+                if(b != null)
+                {
+                    BorrowerDTO b1 = new BorrowerDTO(b);
+                    return b1;
+                }
+                return null;
 
-                return b1;
             }
         }
 

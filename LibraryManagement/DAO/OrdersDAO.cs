@@ -43,6 +43,99 @@ namespace LibraryManagement.DAO
             }            
         }
 
+        public MessageResult InsertNewOrder(List<DetailOrdersDTO> doLst ,OrdersDTO o)
+        {
+            MessageResult mr = new MessageResult();
+            var check1 = db.Borrowers.Find(o.BorrowerID);
+            var check2 = db.Librarians.Find(o.LibrarianID);
+            if (check1 != null)
+            {
+                if (check2 != null && o.LibrarianID == CurrentSession.sessionId)
+                {
+
+
+                    var books = db.Books.ToList();
+                    bool flag = true;
+                    List<DetailOrdersDTO> errorDetailOrders = new List<DetailOrdersDTO>();
+                    foreach (var i in doLst)
+                    {
+                        foreach (var j in books)
+                        {
+                            if (i.BookId == j.bookID)
+                            {
+                                if (i.QuantityBorrowed > j.quantity)
+                                {
+                                    flag = false;
+                                    errorDetailOrders.Add(i);
+                                }
+                            }
+
+                        }
+                    }
+                    if (flag)
+                    {
+                        OrderTbl od = new OrderTbl();
+                        if (o != null)
+                        {
+                            od.orderID = CreateOrderId();
+                            od.dateBorrowed = o.DateBorrowed;
+                            od.borrowerID = o.BorrowerID;
+                            od.returnDate = o.ReturnDate;
+                            od.status = o.Status;
+                            od.librarianID = o.LibrarianID;
+                            db.OrderTbls.Add(od);
+                            db.SaveChanges();
+                        }
+                        var temp = db.OrderTbls.Find(od.orderID);
+                        if (temp != null)
+                        {
+                            DetailOrderDAO.Instance.InsertDetailOrder(doLst, od.orderID);
+                            mr.isSuccess = true;
+                          
+                        }
+                        else
+                        {
+                            mr.isSuccess = false;
+                            mr.returnMessage = "Something's wrong. Fail to create order. ";
+                            
+                        }
+
+                    }
+
+                    mr.isSuccess = false;
+                    string mess = "";
+                    foreach (var k in errorDetailOrders)
+                    {
+                        mess += k.BookId.ToString() + " ";
+                    }
+                    mr.returnMessage = "Some Books were out of stock. Here are these of BookIDs: " + mess;
+                   
+
+                }
+                else
+                {
+                    mr.isSuccess = false;
+                    mr.returnMessage = "[Danger] Invalid Session.";
+                   
+                }
+            }
+            else
+            {
+                mr.isSuccess = false;
+                mr.returnMessage = "Something's wrong. Borrower ID: '"+ o.BorrowerID + "' is not existed. ";
+                
+            }
+           
+           return mr;
+
+        }
+
+        private int CreateOrderId()
+        {
+          int temp =  db.OrderTbls.Max(x => x.orderID);
+            temp += 1;
+          return temp;
+        }
 
     }
 }
