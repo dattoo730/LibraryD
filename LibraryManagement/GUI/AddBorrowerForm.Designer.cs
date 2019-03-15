@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.FemaleButton = new System.Windows.Forms.RadioButton();
@@ -47,21 +45,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.MonthCombobox = new System.Windows.Forms.ComboBox();
-            this.DayCombobox = new System.Windows.Forms.ComboBox();
-            this.YearCombobox = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.YearCombobox);
-            this.panel1.Controls.Add(this.DayCombobox);
-            this.panel1.Controls.Add(this.MonthCombobox);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.DateTimePicker);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.ExitButton);
             this.panel1.Controls.Add(this.FemaleButton);
@@ -83,26 +73,6 @@
             this.panel1.Size = new System.Drawing.Size(640, 337);
             this.panel1.TabIndex = 1;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(280, 222);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(14, 20);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "/";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(209, 222);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(14, 20);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "/";
-            // 
             // SaveButton
             // 
             this.SaveButton.Location = new System.Drawing.Point(355, 285);
@@ -121,6 +91,7 @@
             this.ExitButton.TabIndex = 20;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // FemaleButton
             // 
@@ -234,41 +205,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Borrower ID";
             // 
-            // MonthCombobox
+            // DateTimePicker
             // 
-            this.MonthCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MonthCombobox.FormattingEnabled = true;
-            this.MonthCombobox.Location = new System.Drawing.Point(158, 222);
-            this.MonthCombobox.Name = "MonthCombobox";
-            this.MonthCombobox.Size = new System.Drawing.Size(45, 21);
-            this.MonthCombobox.TabIndex = 24;
-            // 
-            // DayCombobox
-            // 
-            this.DayCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DayCombobox.FormattingEnabled = true;
-            this.DayCombobox.Location = new System.Drawing.Point(229, 221);
-            this.DayCombobox.Name = "DayCombobox";
-            this.DayCombobox.Size = new System.Drawing.Size(45, 21);
-            this.DayCombobox.TabIndex = 25;
-            // 
-            // YearCombobox
-            // 
-            this.YearCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.YearCombobox.FormattingEnabled = true;
-            this.YearCombobox.Location = new System.Drawing.Point(300, 221);
-            this.YearCombobox.Name = "YearCombobox";
-            this.YearCombobox.Size = new System.Drawing.Size(59, 21);
-            this.YearCombobox.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(365, 221);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(158, 23);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "( Month / Day / Year )";
+            this.DateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateTimePicker.Location = new System.Drawing.Point(158, 225);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(145, 20);
+            this.DateTimePicker.TabIndex = 22;
+            this.DateTimePicker.Value = new System.DateTime(2019, 3, 15, 0, 10, 47, 0);
             // 
             // AddBorrowerForm
             // 
@@ -301,13 +246,8 @@
         private System.Windows.Forms.Label BorrowerIDLabel;
         private System.Windows.Forms.RadioButton FemaleButton;
         private System.Windows.Forms.RadioButton MaleButton;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.ComboBox YearCombobox;
-        private System.Windows.Forms.ComboBox DayCombobox;
-        private System.Windows.Forms.ComboBox MonthCombobox;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
     }
 }

@@ -24,7 +24,6 @@ namespace LibraryManagement.BUS
         }
         private BooksBUS() { }
 
-
         public void ShowAllBooks(ComboBox data)
         {
             data.DataSource = BookDAO.Instance.ShowAllBooks();

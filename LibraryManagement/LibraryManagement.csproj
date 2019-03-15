@@ -64,17 +64,20 @@
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="BUS\BooksBUS.cs" />
+    <Compile Include="BUS\BorrowerBUS.cs" />
     <Compile Include="BUS\OrdersBUS.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAO\BookDAO.cs" />
+    <Compile Include="DAO\BorrowerDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DetailOrder.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\BookDTO.cs" />
+    <Compile Include="DTO\BorrowerDTO.cs" />
     <Compile Include="DTO\CurrentSession.cs" />
     <Compile Include="DTO\DetailOrdersDTO.cs" />
     <Compile Include="DTO\MessageResult.cs" />
@@ -150,6 +153,9 @@
     <Compile Include="SupplyHistory.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
+      <DependentUpon>AddBorrowerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
