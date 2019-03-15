@@ -13,6 +13,7 @@
         <EntityTypeShape EntityType="LibraryManagementModel.OrderTbl" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.StatusObject" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.SupplyHistory" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="LibraryManagementModel.FK__DetailOrd__bookI__47DBAE45" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.fk_Book_id_category" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.fk_Book_id_SupplyHistory" ManuallyRouted="false" />

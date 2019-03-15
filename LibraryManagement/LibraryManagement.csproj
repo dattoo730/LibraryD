@@ -126,6 +126,12 @@
     <Compile Include="GUI\SearchBorrower.Designer.cs">
       <DependentUpon>SearchBorrower.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\SearchBorrowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SearchBorrowerForm.Designer.cs">
+      <DependentUpon>SearchBorrowerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Librarian.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
@@ -155,6 +161,9 @@
     <Compile Include="SupplyHistory.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>LibraryManagementDB.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\BorrowBooks.resx">
       <DependentUpon>BorrowBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SearchBorrowerForm.resx">
+      <DependentUpon>SearchBorrowerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

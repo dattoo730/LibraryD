@@ -80,7 +80,7 @@
             // 
             this.DateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePicker.Location = new System.Drawing.Point(158, 225);
+            this.DateTimePicker.Location = new System.Drawing.Point(147, 227);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(145, 20);
             this.DateTimePicker.TabIndex = 22;
@@ -108,7 +108,7 @@
             // 
             // FemaleButton
             // 
-            this.FemaleButton.Location = new System.Drawing.Point(234, 173);
+            this.FemaleButton.Location = new System.Drawing.Point(223, 175);
             this.FemaleButton.Name = "FemaleButton";
             this.FemaleButton.Size = new System.Drawing.Size(69, 20);
             this.FemaleButton.TabIndex = 17;
@@ -118,7 +118,7 @@
             // MaleButton
             // 
             this.MaleButton.Checked = true;
-            this.MaleButton.Location = new System.Drawing.Point(158, 173);
+            this.MaleButton.Location = new System.Drawing.Point(147, 175);
             this.MaleButton.Name = "MaleButton";
             this.MaleButton.Size = new System.Drawing.Size(70, 20);
             this.MaleButton.TabIndex = 16;
@@ -129,14 +129,14 @@
             // BorrowerIDLabel
             // 
             this.BorrowerIDLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BorrowerIDLabel.Location = new System.Drawing.Point(158, 40);
+            this.BorrowerIDLabel.Location = new System.Drawing.Point(147, 42);
             this.BorrowerIDLabel.Name = "BorrowerIDLabel";
             this.BorrowerIDLabel.Size = new System.Drawing.Size(145, 20);
             this.BorrowerIDLabel.TabIndex = 15;
             // 
             // PhoneTextBox
             // 
-            this.PhoneTextBox.Location = new System.Drawing.Point(458, 108);
+            this.PhoneTextBox.Location = new System.Drawing.Point(447, 110);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(145, 20);
             this.PhoneTextBox.TabIndex = 13;
@@ -144,7 +144,7 @@
             // 
             // AddressTextBox
             // 
-            this.AddressTextBox.Location = new System.Drawing.Point(458, 40);
+            this.AddressTextBox.Location = new System.Drawing.Point(447, 42);
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(145, 20);
             this.AddressTextBox.TabIndex = 12;
@@ -152,14 +152,15 @@
             // 
             // MailTextBox
             // 
-            this.MailTextBox.Location = new System.Drawing.Point(458, 173);
+            this.MailTextBox.Location = new System.Drawing.Point(447, 175);
             this.MailTextBox.Name = "MailTextBox";
             this.MailTextBox.Size = new System.Drawing.Size(145, 20);
             this.MailTextBox.TabIndex = 10;
+            this.MailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.MailTextBox_Validating);
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(158, 105);
+            this.NameTextBox.Location = new System.Drawing.Point(147, 107);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(145, 20);
             this.NameTextBox.TabIndex = 8;
@@ -167,7 +168,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(352, 174);
+            this.label7.Location = new System.Drawing.Point(341, 176);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 20);
             this.label7.TabIndex = 6;
@@ -175,7 +176,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(352, 108);
+            this.label6.Location = new System.Drawing.Point(341, 110);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 20);
             this.label6.TabIndex = 5;
@@ -183,7 +184,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(352, 40);
+            this.label5.Location = new System.Drawing.Point(341, 42);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 20);
             this.label5.TabIndex = 4;
@@ -191,7 +192,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(52, 173);
+            this.label4.Location = new System.Drawing.Point(41, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 3;
@@ -199,7 +200,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(52, 225);
+            this.label3.Location = new System.Drawing.Point(41, 227);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 20);
             this.label3.TabIndex = 2;
@@ -207,7 +208,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(52, 108);
+            this.label2.Location = new System.Drawing.Point(41, 110);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 1;
@@ -215,7 +216,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(52, 40);
+            this.label1.Location = new System.Drawing.Point(41, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 0;
