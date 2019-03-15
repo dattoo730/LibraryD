@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.FemaleButton = new System.Windows.Forms.RadioButton();
@@ -45,8 +47,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,6 +75,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(640, 337);
             this.panel1.TabIndex = 1;
+            // 
+            // DateTimePicker
+            // 
+            this.DateTimePicker.CustomFormat = "dd/MM/yyyy";
+            this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateTimePicker.Location = new System.Drawing.Point(158, 225);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(145, 20);
+            this.DateTimePicker.TabIndex = 22;
+            this.DateTimePicker.Value = new System.DateTime(2019, 3, 15, 0, 10, 47, 0);
             // 
             // SaveButton
             // 
@@ -99,12 +112,12 @@
             this.FemaleButton.Name = "FemaleButton";
             this.FemaleButton.Size = new System.Drawing.Size(69, 20);
             this.FemaleButton.TabIndex = 17;
-            this.FemaleButton.TabStop = true;
             this.FemaleButton.Text = "Female";
             this.FemaleButton.UseVisualStyleBackColor = true;
             // 
             // MaleButton
             // 
+            this.MaleButton.Checked = true;
             this.MaleButton.Location = new System.Drawing.Point(158, 173);
             this.MaleButton.Name = "MaleButton";
             this.MaleButton.Size = new System.Drawing.Size(70, 20);
@@ -127,6 +140,7 @@
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(145, 20);
             this.PhoneTextBox.TabIndex = 13;
+            this.PhoneTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PhoneTextBox_Validating);
             // 
             // AddressTextBox
             // 
@@ -134,6 +148,7 @@
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(145, 20);
             this.AddressTextBox.TabIndex = 12;
+            this.AddressTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AddressTextBox_Validating);
             // 
             // MailTextBox
             // 
@@ -148,6 +163,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(145, 20);
             this.NameTextBox.TabIndex = 8;
+            this.NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
             // 
             // label7
             // 
@@ -205,15 +221,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Borrower ID";
             // 
-            // DateTimePicker
+            // errorProvider
             // 
-            this.DateTimePicker.CustomFormat = "dd/MM/yyyy";
-            this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateTimePicker.Location = new System.Drawing.Point(158, 225);
-            this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.Size = new System.Drawing.Size(145, 20);
-            this.DateTimePicker.TabIndex = 22;
-            this.DateTimePicker.Value = new System.DateTime(2019, 3, 15, 0, 10, 47, 0);
+            this.errorProvider.ContainerControl = this;
             // 
             // AddBorrowerForm
             // 
@@ -225,6 +235,7 @@
             this.Text = "AddBorrowerForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +260,6 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

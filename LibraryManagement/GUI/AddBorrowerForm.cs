@@ -24,34 +24,96 @@ namespace LibraryManagement.GUI
         {
             DateTimePicker.Value = DateTime.Today;
         }
+
+        public void CheckValues()
+        {
+            //if (BorrowerBUS.Instance.CheckNullOrEmpty(NameTextBox.Text))
+            //{
+            //    MessageBox.Show("BorrowerName must not be empty.", "Inform");
+            //}
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            var B = new DTO.BorrowerDTO();
-            B.BorrowerID = 1;
-            B.BorrowerName =NameTextBox.Text;
-            if (MaleButton.Checked)
-            {
-                B.BorrowerGender = "Male";
-            }
-            if(FemaleButton.Checked)
-            {
-                B.BorrowerGender = "Female";
-            }
-            B.BorrowerBirthDate = DateTimePicker.Value;
-            B.BorrowerAddress = AddressTextBox.Text;
-            B.BorrowerPhone = PhoneTextBox.Text;
-            B.BorrowerEmail = MailTextBox.Text;
+            //var B = new DTO.BorrowerDTO();
+            //B.BorrowerID = 1;
+            //B.BorrowerName =NameTextBox.Text.Trim();
+            //if (MaleButton.Checked)
+            //{
+            //    B.BorrowerGender = "Male";
+            //}
+            //if(FemaleButton.Checked)
+            //{
+            //    B.BorrowerGender = "Female";
+            //}
+            //B.BorrowerBirthDate = DateTimePicker.Value;
+            //B.BorrowerAddress = AddressTextBox.Text.Trim();
+            //B.BorrowerPhone = PhoneTextBox.Text.Trim();
+            //B.BorrowerEmail = MailTextBox.Text.Trim();
 
-            bool d =BorrowerBUS.Instance.AddBorrower(B);
-            if (d)
-                MessageBox.Show("A borrower have been added.","Inform");
-            else
-                MessageBox.Show("Can't add this borrower.", "Inform");
+            //bool d =BorrowerBUS.Instance.AddBorrower(B);
+            //if (d)
+            //    MessageBox.Show("A borrower have been added.","Inform");
+            //else
+            //    MessageBox.Show("Can't add this borrower.", "Inform");
+
+            CheckValues();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void NameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(NameTextBox.Text.Trim()))
+            {
+                errorProvider.SetError(NameTextBox, "Borrower name is required.");
+                // e.fo
+                e.Cancel = true;
+
+                //  borrowerIdTxt.Focus();
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(NameTextBox, string.Empty);
+            }
+        }
+
+        private void AddressTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddressTextBox.Text.Trim()))
+            {
+                errorProvider.SetError(AddressTextBox, "Borrower address is required.");
+                // e.fo
+                e.Cancel = true;
+
+                //  borrowerIdTxt.Focus();
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(AddressTextBox, string.Empty);
+            }
+        }
+
+        private void PhoneTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddressTextBox.Text.Trim()))
+            {
+                errorProvider.SetError(AddressTextBox, "Borrower address is required.");
+                // e.fo
+                e.Cancel = true;
+
+                //  borrowerIdTxt.Focus();
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(AddressTextBox, string.Empty);
+            }
         }
     }
 }

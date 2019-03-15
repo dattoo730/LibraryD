@@ -46,13 +46,14 @@ namespace LibraryManagement.DAO
             }
         }
 
-        public Borrower SearchBorrowerID(int id)
+        public BorrowerDTO SearchBorrowerID(int id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
                 Borrower b = entities.Borrowers.Where(x => x.borrowerID == id).FirstOrDefault();
+                BorrowerDTO b1 = new BorrowerDTO(b);
 
-                return b;
+                return b1;
             }
         }
 
