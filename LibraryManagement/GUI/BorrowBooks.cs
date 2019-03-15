@@ -17,12 +17,12 @@ namespace LibraryManagement.GUI
       
         public BorrowBooks()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
-            BooksBUS.Instance.ShowAllBooksToCombobox(chooseBookCb);
-            BooksBUS.Instance.InitializeBookDataGridViewColumns(booksDgv);
-            BooksBUS.Instance.SetDefaultValues(orderCreatedDateDtp, quantityBookTxt);
-            BooksBUS.Instance.ShowCurrentSessionInfo(librarianIdTxt, librarianNameTxt);
+            BorrowingBookBUS.Instance.ShowAllBooksToCombobox(chooseBookCb);
+            BorrowingBookBUS.Instance.InitializeBookDataGridViewColumns(booksDgv);
+            BorrowingBookBUS.Instance.SetDefaultValues(orderCreatedDateDtp, quantityBookTxt);
+            BorrowingBookBUS.Instance.ShowCurrentSessionInfo(librarianIdTxt, librarianNameTxt);
 
 
         }
@@ -86,7 +86,7 @@ namespace LibraryManagement.GUI
         {
             if (this.ValidateChildren())
             {
-                MessageBox.Show("Added!");
+                BorrowingBookBUS.Instance.AddBookToDataGridView(booksDgv, chooseBookCb, quantityBookTxt);
             }
 
         }

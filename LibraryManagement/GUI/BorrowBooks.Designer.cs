@@ -53,8 +53,10 @@
             this.makeOrderBtn = new System.Windows.Forms.Button();
             this.chooseBookCb = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +111,7 @@
             this.librarianIdTxt.Location = new System.Drawing.Point(73, 427);
             this.librarianIdTxt.Name = "librarianIdTxt";
             this.librarianIdTxt.ReadOnly = true;
-            this.librarianIdTxt.Size = new System.Drawing.Size(57, 20);
+            this.librarianIdTxt.Size = new System.Drawing.Size(81, 20);
             this.librarianIdTxt.TabIndex = 1;
             // 
             // label4
@@ -145,9 +147,10 @@
             // booksDgv
             // 
             this.booksDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.booksDgv.Location = new System.Drawing.Point(143, 126);
+            this.booksDgv.Location = new System.Drawing.Point(103, 126);
             this.booksDgv.Name = "booksDgv";
-            this.booksDgv.Size = new System.Drawing.Size(406, 216);
+            this.booksDgv.ReadOnly = true;
+            this.booksDgv.Size = new System.Drawing.Size(446, 216);
             this.booksDgv.TabIndex = 3;
             // 
             // label6
@@ -237,6 +240,10 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
             // BorrowBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +272,7 @@
             this.Text = "Borrow Books";
             ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +300,6 @@
         private System.Windows.Forms.Button makeOrderBtn;
         private System.Windows.Forms.ComboBox chooseBookCb;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
     }
 }
