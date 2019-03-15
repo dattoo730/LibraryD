@@ -42,7 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.librarianNameTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ordersDgv = new System.Windows.Forms.DataGridView();
+            this.booksDgv = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.makeOrderBtn = new System.Windows.Forms.Button();
             this.chooseBookCb = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ordersDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,13 +142,13 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Date Borrowed:";
             // 
-            // ordersDgv
+            // booksDgv
             // 
-            this.ordersDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ordersDgv.Location = new System.Drawing.Point(143, 126);
-            this.ordersDgv.Name = "ordersDgv";
-            this.ordersDgv.Size = new System.Drawing.Size(406, 216);
-            this.ordersDgv.TabIndex = 3;
+            this.booksDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.booksDgv.Location = new System.Drawing.Point(143, 126);
+            this.booksDgv.Name = "booksDgv";
+            this.booksDgv.Size = new System.Drawing.Size(406, 216);
+            this.booksDgv.TabIndex = 3;
             // 
             // label6
             // 
@@ -246,7 +246,7 @@
             this.Controls.Add(this.makeOrderBtn);
             this.Controls.Add(this.addBookBtn);
             this.Controls.Add(this.orderCreatedDateDtp);
-            this.Controls.Add(this.ordersDgv);
+            this.Controls.Add(this.booksDgv);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.librarianNameTxt);
@@ -263,8 +263,7 @@
             this.Controls.Add(this.label1);
             this.Name = "BorrowBooks";
             this.Text = "Borrow Books";
-            this.Load += new System.EventHandler(this.BorrowBooks_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ordersDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -282,7 +281,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox librarianNameTxt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView ordersDgv;
+        private System.Windows.Forms.DataGridView booksDgv;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

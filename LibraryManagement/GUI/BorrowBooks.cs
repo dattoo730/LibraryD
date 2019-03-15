@@ -17,17 +17,16 @@ namespace LibraryManagement.GUI
       
         public BorrowBooks()
         {
-            InitializeComponent();
-            borrowerIdTxt.Focus();
-            BooksBUS.Instance.ShowAllBooks(chooseBookCb);
-            orderCreatedDateDtp.Value = System.DateTime.Now;
-            librarianIdTxt.Text = CurrentSession.sessionId.ToString();
-            librarianNameTxt.Text = CurrentSession.sessionName.ToString();
-            quantityBookTxt.Text = "1";
+            InitializeComponent();            
+
+            BooksBUS.Instance.ShowAllBooksToCombobox(chooseBookCb);
+            BooksBUS.Instance.InitializeBookDataGridViewColumns(booksDgv);
+            BooksBUS.Instance.SetDefaultValues(orderCreatedDateDtp, quantityBookTxt);
+            BooksBUS.Instance.ShowCurrentSessionInfo(librarianIdTxt, librarianNameTxt);
+
+
         }
 
-      
-      
 
         private void borrowerIdTxt_Validating(object sender, CancelEventArgs e)
         {
@@ -111,11 +110,6 @@ namespace LibraryManagement.GUI
         private void chooseBookCb_KeyPress(object sender, KeyPressEventArgs e)
         {
           
-        }
-
-        private void BorrowBooks_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
