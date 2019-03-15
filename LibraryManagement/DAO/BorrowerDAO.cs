@@ -1,21 +1,43 @@
-﻿using System;
+﻿using LibraryManagement.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LibraryManagement;
-using LibraryManagement.DTO;
 
 namespace LibraryManagement.DAO
 {
     class BorrowerDAO
     {
-        
-        public bool AddBorrower(Borrower b)
+        private static BorrowerDAO instance;
+        public static BorrowerDAO Instance
         {
-            using(LibraryManagementEntities entities = new LibraryManagementEntities())
+            get
             {
-                entities.Borrowers.Add(b);
+                if (instance == null)
+                    instance = new BorrowerDAO();
+                return instance;
+            }
+            private set { BorrowerDAO.instance = value; }
+        }
+
+        public BorrowerDAO() { }
+
+        public bool AddBorrower(BorrowerDTO b)
+        {
+            using (LibraryManagementEntities entities = new LibraryManagementEntities())
+            {
+                Borrower b1 = new Borrower();
+
+                b1.borrowerID = b.BorrowerID;
+                b1.borrowerName = b.BorrowerName;
+                b1.borrowerGender = b.BorrowerGender;
+                b1.borrowerPhone = b.BorrowerPhone;
+                b1.borrowerAddress = b.BorrowerAddress;
+                b1.borrowerEmail = b.BorrowerEmail;
+                b1.borrowerBirthDate = b.BorrowerBirthDate;
+
+                entities.Borrowers.Add(b1);
                 int ret = entities.SaveChanges();
                 if (ret == 1)
                     return true;
@@ -24,35 +46,54 @@ namespace LibraryManagement.DAO
             }
         }
 
-        public Borrower SearchBorrowerID(int id)
+        public BorrowerDTO SearchBorrowerID(int id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
                 Borrower b = entities.Borrowers.Where(x => x.borrowerID == id).FirstOrDefault();
+                BorrowerDTO b1 = new BorrowerDTO(b);
 
-                return b;
+                return b1;
             }
         }
 
-        public List<Borrower> SearchBorrowerName(String name)
+        public List<BorrowerDTO> SearchBorrowerName(String name)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
-                List<Borrower> b = entities.Borrowers.Where(x => x.borrowerName.Equals(name)).ToList();
-
-                return b;
+                try
+                {
+                    List<BorrowerDTO> oDto = new List<BorrowerDTO>();
+                    var b = entities.Borrowers.Where(x => x.borrowerName.Equals(name)).ToList();
+                    foreach (var i in b)
+                    {
+                        BorrowerDTO o = new BorrowerDTO(i);
+                        oDto.Add(o);
+                    }
+                    return oDto;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
         }
 
-        public List<Borrower> GetAllBorrower()
+        public List<BorrowerDTO> GetAllBorrower()
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
-                
-                List<Borrower> b = entities.Borrowers.ToList();
-                return b;
-            }
-        }
 
+                List<BorrowerDTO> oDto = new List<BorrowerDTO>();
+                var b = entities.Borrowers.ToList();
+                foreach (var i in b)
+                {
+                    BorrowerDTO o = new BorrowerDTO(i);
+                    oDto.Add(o);
+                }
+                return oDto;
+            }
+            
+        }
     }
 }
