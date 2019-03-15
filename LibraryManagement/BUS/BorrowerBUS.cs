@@ -25,6 +25,7 @@ namespace LibraryManagement.BUS
         }
         private BorrowerBUS() { }
 
+        //add a new borrower
         public bool AddBorrower(BorrowerDTO b)
         {
            return BorrowerDAO.Instance.AddBorrower(b);   
@@ -38,6 +39,7 @@ namespace LibraryManagement.BUS
             return false;
         }
 
+        //check email pattern
         public bool CheckEmail(String email)
         {
             try
@@ -51,6 +53,7 @@ namespace LibraryManagement.BUS
             }
         }
 
+        //check phone number pattern
         public bool CheckPhoneNumber(String p)
         {
             Regex re = new Regex(@"^(\+[0-9]{9})$");
@@ -59,6 +62,7 @@ namespace LibraryManagement.BUS
             return false;
         }
 
+        //Remove Extra Whitespaces
         public String RemoveExtraWhitespaces(String name)
         {
             Regex trimmer = new Regex(@"\s\s+");

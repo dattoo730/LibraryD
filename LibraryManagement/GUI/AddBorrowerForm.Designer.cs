@@ -156,6 +156,7 @@
             this.MailTextBox.Name = "MailTextBox";
             this.MailTextBox.Size = new System.Drawing.Size(145, 20);
             this.MailTextBox.TabIndex = 10;
+            this.MailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.MailTextBox_Validating);
             // 
             // NameTextBox
             // 

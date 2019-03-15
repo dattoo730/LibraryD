@@ -101,9 +101,9 @@ namespace LibraryManagement.GUI
 
         private void PhoneTextBox_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(AddressTextBox.Text.Trim()))
+            if (string.IsNullOrEmpty(PhoneTextBox.Text.Trim()))
             {
-                errorProvider.SetError(AddressTextBox, "Borrower address is required.");
+                errorProvider.SetError(PhoneTextBox, "Borrower address is required.");
                 // e.fo
                 e.Cancel = true;
 
@@ -112,7 +112,34 @@ namespace LibraryManagement.GUI
             else
             {
                 e.Cancel = false;
-                errorProvider.SetError(AddressTextBox, string.Empty);
+                errorProvider.SetError(PhoneTextBox, string.Empty);
+            }
+        }
+
+        private void MailTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(MailTextBox.Text.Trim()))
+            {
+                errorProvider.SetError(MailTextBox, "Borrower address is required.");
+                // e.fo
+                e.Cancel = true;
+
+                //  borrowerIdTxt.Focus();
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(MailTextBox, string.Empty);
+                if (!BorrowerBUS.Instance.CheckEmail(MailTextBox.Text.Trim()))
+                {
+                    errorProvider.SetError(MailTextBox, "Borrower email incorrect.");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                    errorProvider.SetError(MailTextBox, string.Empty);
+                }
             }
         }
     }

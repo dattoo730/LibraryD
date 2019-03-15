@@ -10,6 +10,8 @@ namespace LibraryManagement.DAO
     class BorrowerDAO
     {
         private static BorrowerDAO instance;
+
+        //create new class BorrowerDAO
         public static BorrowerDAO Instance
         {
             get
@@ -23,6 +25,7 @@ namespace LibraryManagement.DAO
 
         public BorrowerDAO() { }
 
+        //add new borrower
         public bool AddBorrower(BorrowerDTO b)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
@@ -46,6 +49,7 @@ namespace LibraryManagement.DAO
             }
         }
 
+        //Search borrower base ID
         public BorrowerDTO SearchBorrowerID(int id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
@@ -57,6 +61,7 @@ namespace LibraryManagement.DAO
             }
         }
 
+        //Search borrower base name
         public List<BorrowerDTO> SearchBorrowerName(String name)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
@@ -79,6 +84,7 @@ namespace LibraryManagement.DAO
             }
         }
 
+        //get all borrower
         public List<BorrowerDTO> GetAllBorrower()
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
