@@ -22,5 +22,10 @@ namespace LibraryManagement.GUI
             LibraryManagementEntities db = new LibraryManagementEntities();
             dataGridView1.DataSource = db.Borrowers.ToList();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -64,7 +64,9 @@
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="BUS\BooksBUS.cs" />
+    <Compile Include="BUS\BorrowerBUS.cs" />
     <Compile Include="BUS\BorrowingBookBUS.cs" />
+    <Compile Include="BUS\LoginLibrarianBUS.cs" />
     <Compile Include="BUS\OrdersBUS.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
@@ -72,6 +74,7 @@
     <Compile Include="DAO\BookDAO.cs" />
     <Compile Include="DAO\BorrowerDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\LoginLibrarianDAO.cs" />
     <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DetailOrder.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
@@ -99,6 +102,12 @@
     </Compile>
     <Compile Include="GUI\AddBorrwerBookForm.Designer.cs">
       <DependentUpon>AddBorrwerBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LoginLibrarian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LoginLibrarian.Designer.cs">
+      <DependentUpon>LoginLibrarian.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
@@ -155,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LoginLibrarian.resx">
+      <DependentUpon>LoginLibrarian.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
