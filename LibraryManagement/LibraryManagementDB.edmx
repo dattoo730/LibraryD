@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="bookID" />
           </Key>
-          <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bookID" Type="int" Nullable="false" />
           <Property Name="bookTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="author" Type="nvarchar" MaxLength="50" />
           <Property Name="isbn" Type="nvarchar" MaxLength="13" />
@@ -20,13 +20,13 @@
           <Key>
             <PropertyRef Name="borrowerID" />
           </Key>
-          <Property Name="borrowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="borrowerID" Type="int" Nullable="false" />
           <Property Name="borrowerName" Type="nvarchar" MaxLength="50" />
           <Property Name="borrowerBirthDate" Type="datetime" />
           <Property Name="borrowerGender" Type="nvarchar" MaxLength="10" />
           <Property Name="borrowerAddress" Type="nvarchar" MaxLength="100" />
-          <Property Name="borrowerPhone" Type="nvarchar" MaxLength="10" />
-          <Property Name="borrowerEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="borrowerPhone" Type="varchar" MaxLength="10" />
+          <Property Name="borrowerEmail" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -49,7 +49,7 @@
             <PropertyRef Name="librarianID" />
           </Key>
           <Property Name="librarianID" Type="int" Nullable="false" />
-          <Property Name="librarianPass" Type="varchar" MaxLength="30" />
+          <Property Name="librarianPass" Type="nvarchar" MaxLength="30" />
           <Property Name="librarianName" Type="nvarchar" MaxLength="50" />
           <Property Name="librarianSex" Type="int" />
           <Property Name="librarianAddress" Type="nvarchar" MaxLength="100" />
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
-          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="int" Nullable="false" />
           <Property Name="dateBorrowed" Type="date" />
           <Property Name="borrowerID" Type="int" />
           <Property Name="returnDate" Type="datetime" />
@@ -83,6 +83,16 @@
           <Property Name="librarianID" Type="int" />
           <Property Name="quantity" Type="int" />
           <Property Name="supplyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__DetailOrd__bookI__47DBAE45">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
@@ -189,6 +199,7 @@
           <EntitySet Name="OrderTbl" EntityType="Self.OrderTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusObject" EntityType="Self.StatusObject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupplyHistory" EntityType="Self.SupplyHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
             <End Role="Book" EntitySet="Book" />
             <End Role="DetailOrder" EntitySet="DetailOrder" />
@@ -231,7 +242,7 @@
           <Key>
             <PropertyRef Name="bookID" />
           </Key>
-          <Property Name="bookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bookID" Type="Int32" Nullable="false" />
           <Property Name="bookTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
@@ -245,13 +256,13 @@
           <Key>
             <PropertyRef Name="borrowerID" />
           </Key>
-          <Property Name="borrowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="borrowerID" Type="Int32" Nullable="false" />
           <Property Name="borrowerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="borrowerBirthDate" Type="DateTime" Precision="3" />
           <Property Name="borrowerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="borrowerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="borrowerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="borrowerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="borrowerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderTbls" Relationship="Self.FK__OrderTbl__borrow__4222D4EF" FromRole="Borrower" ToRole="OrderTbl" />
         </EntityType>
         <EntityType Name="Category">
@@ -278,7 +289,7 @@
             <PropertyRef Name="librarianID" />
           </Key>
           <Property Name="librarianID" Type="Int32" Nullable="false" />
-          <Property Name="librarianPass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="librarianPass" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="librarianName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="librarianSex" Type="Int32" />
           <Property Name="librarianAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -291,7 +302,7 @@
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
-          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="Int32" Nullable="false" />
           <Property Name="dateBorrowed" Type="DateTime" Precision="0" />
           <Property Name="borrowerID" Type="Int32" />
           <Property Name="returnDate" Type="DateTime" Precision="3" />
@@ -321,6 +332,16 @@
           <Property Name="supplyDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Book" Relationship="Self.fk_Book_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Book" />
           <NavigationProperty Name="Librarian" Relationship="Self.fk_Librarian_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Librarian" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK__DetailOrd__bookI__47DBAE45">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
@@ -427,6 +448,7 @@
           <EntitySet Name="OrderTbls" EntityType="Self.OrderTbl" />
           <EntitySet Name="StatusObjects" EntityType="Self.StatusObject" />
           <EntitySet Name="SupplyHistories" EntityType="Self.SupplyHistory" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
             <End Role="Book" EntitySet="Books" />
             <End Role="DetailOrder" EntitySet="DetailOrders" />
@@ -549,6 +571,17 @@
                 <ScalarProperty Name="librarianID" ColumnName="librarianID" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="supplyDate" ColumnName="supplyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LibraryManagementModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using LibraryManagement.DAO;
 using LibraryManagement.DTO;
 
@@ -12,6 +14,8 @@ namespace LibraryManagement.BUS
     class BorrowerBUS
     {
         private static BorrowerBUS instance;
+        private DataView dv;
+        private DataTable dt = new DataTable();
 
         public static BorrowerBUS Instance
         {
@@ -29,6 +33,26 @@ namespace LibraryManagement.BUS
         public bool AddBorrower(BorrowerDTO b)
         {
            return BorrowerDAO.Instance.AddBorrower(b);   
+        }
+
+        public int CreateBorrowerID()
+        {
+            int id;
+            List<BorrowerDTO> B =BorrowerDAO.Instance.GetAllBorrower();
+            if(B == null)
+            {
+                return 1;
+            }
+            else
+            {
+                id = B.Count();
+                foreach (BorrowerDTO i in B)
+                {
+                    if (i.BorrowerID == id)
+                        id++;
+                }
+            }
+            return id;
         }
 
         //check value textbox is null or empty
@@ -56,10 +80,12 @@ namespace LibraryManagement.BUS
         //check phone number pattern
         public bool CheckPhoneNumber(String p)
         {
-            Regex re = new Regex(@"^(\+[0-9]{9})$");
-            if (re.IsMatch(p))
+            if (p.All(char.IsDigit) && !p.Contains(" "))
+            {
                 return true;
-            return false;
+            }
+            else
+                return false;
         }
 
         //Remove Extra Whitespaces
@@ -70,5 +96,36 @@ namespace LibraryManagement.BUS
             return name;
         }
 
+        public bool CheckNumber(String name)
+        {
+            if(name.All(char.IsDigit))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void SearchBorrowerBaseID(DataGridView data, int id)
+        {
+            //dt.Columns.Add(new DataColumn("BookID"));
+            //dt.Columns.Add(new DataColumn("BookName"));
+            //dt.Columns.Add(new DataColumn("Quantity"));
+            //dv = new DataView(dt);
+            data.DataSource = BorrowerDAO.Instance.SearchBorrowerID(id);
+            //data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
+        public void SearchBorrowerBaseName(DataGridView data,String name)
+        {
+            //dt.Columns.Add(new DataColumn("BookID"));
+            //dt.Columns.Add(new DataColumn("BookName"));
+            //dt.Columns.Add(new DataColumn("Quantity"));
+            //dv = new DataView(dt);
+            data.DataSource = BorrowerDAO.Instance.SearchBorrowerName(name);
+            data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
     }
 }

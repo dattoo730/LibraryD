@@ -33,5 +33,6 @@ namespace LibraryManagement
         public virtual DbSet<OrderTbl> OrderTbls { get; set; }
         public virtual DbSet<StatusObject> StatusObjects { get; set; }
         public virtual DbSet<SupplyHistory> SupplyHistories { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
