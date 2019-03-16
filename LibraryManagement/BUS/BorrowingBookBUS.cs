@@ -115,7 +115,7 @@ namespace LibraryManagement.BUS
                 if (CheckIsNumber(borrowerIdtxt.Text) && !String.IsNullOrEmpty(borrowerIdtxt.Text))
                 {
                     Borrower b = new Borrower();
-                    var a = BorrowerDAO.Instance.SearchBorrowerID(Convert.ToInt32(borrowerIdtxt.Text));
+                    var a = BorrowerDAO.Instance.SearchBorrowerID(Convert.ToInt32(borrowerIdtxt.Text)).FirstOrDefault();
                     if (a != null)
                     {
                         b.borrowerID = a.BorrowerID;
@@ -188,9 +188,6 @@ namespace LibraryManagement.BUS
                 MessageBox.Show("Invalid session! Please Logout and Relogin.");
         }
 
-        public void MakeDetailBookBorrowingOrder(DataGridView dataDgv)
-        {
-           
-        }
+        
     }
 }

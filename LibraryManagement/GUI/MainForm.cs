@@ -12,15 +12,30 @@ namespace LibraryManagement.GUI
 {
     public partial class MainForm : Form
     {
+        BorrowingBooks brb;
+        ReturningBook rnb;
         public MainForm()
         {
             InitializeComponent();
+           
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void borrowBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LibraryManagementEntities db = new LibraryManagementEntities();
-            dataGridView1.DataSource = db.Borrowers.ToList();
+            // if (myUC1 != null) myUC1.Dispose();
+
+            if (brb != null) brb.Dispose();
+            brb = new BorrowingBooks();
+            this.Controls.Add(brb);
+           // brb.BringToFront();
+        }
+
+        private void returnBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rnb != null) rnb.Dispose();
+            rnb = new ReturningBook();
+            this.Controls.Add(rnb);
+           // rnb.BringToFront();
         }
     }
 }

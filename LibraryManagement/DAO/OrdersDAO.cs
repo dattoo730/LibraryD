@@ -43,6 +43,25 @@ namespace LibraryManagement.DAO
             }            
         }
 
+        public List<OrdersDTO> ShowAllOrdersForReturning()
+        {
+            try
+            {
+                List<OrdersDTO> oDto = new List<OrdersDTO>();
+                var orders = db.OrderTbls.Where(x => x.status == 1).ToList();
+                foreach (var i in orders)
+                {
+                    OrdersDTO o = new OrdersDTO(i);
+                    oDto.Add(o);
+                }
+                return oDto;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public MessageResult InsertNewOrder(List<DetailOrdersDTO> doLst ,OrdersDTO o)
         {
             MessageResult mr = new MessageResult();
@@ -128,6 +147,84 @@ namespace LibraryManagement.DAO
            
            return mr;
 
+        }
+        public List<JoinOrderBorrowerDTO> SearchOrderByOption(string option,string term)
+        {
+            var join = from orderTbl in db.OrderTbls
+                                 join borrower in db.Borrowers on orderTbl.borrowerID equals borrower.borrowerID
+                                 where orderTbl.status == 1
+                       select new JoinOrderBorrowerDTO { orderID = orderTbl.orderID, borrowerID = orderTbl.borrowerID,
+                                              borrowerName = borrower.borrowerName,dateBorrowed = orderTbl.dateBorrowed,
+                                              statusName= orderTbl.StatusObject.statusName
+                                 };
+
+            if (join != null && !String.IsNullOrEmpty(term))
+            {
+                if (option.Equals("orderID"))
+                {
+                    if (term.All(char.IsDigit))
+                    {
+                        try
+                        {
+                            int temp = Convert.ToInt32(term);
+                            var b = join.Where(x => x.orderID == temp).ToList();
+                            return b;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                        
+                       
+                    }                    
+                }
+
+                if (option.Equals("borrowerID"))
+                {
+                    if (term.All(char.IsDigit))
+                    {
+                        try
+                        {
+                            int temp = Convert.ToInt32(term);
+                            var b = join.Where(x => x.borrowerID == temp).ToList();
+                            return b;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+
+                if (option.Equals("borrowerName"))
+                {
+                    
+                        var b = join.Where(x => x.borrowerName.Contains(term)).ToList();
+                        return b;
+                   
+                }
+            }
+            return null;
+        }
+        public List<StatusObject> SearchStatusObjectByID(int? id)
+        {
+            using (LibraryManagementEntities entities = new LibraryManagementEntities())
+            {
+                try
+                {
+                   
+                    var b = entities.StatusObjects.Where(x => x.statusID == id).ToList();
+                   
+                    if (b != null)
+                        return b;
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
         }
 
         private int CreateOrderId()

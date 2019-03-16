@@ -50,7 +50,7 @@ namespace LibraryManagement.DAO
         }
 
         //Search borrower base ID
-        public List<BorrowerDTO> SearchBorrowerID(int id)
+        public List<BorrowerDTO> SearchBorrowerID(int? id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
