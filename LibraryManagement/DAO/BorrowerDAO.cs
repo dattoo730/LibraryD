@@ -50,14 +50,27 @@ namespace LibraryManagement.DAO
         }
 
         //Search borrower base ID
-        public BorrowerDTO SearchBorrowerID(int id)
+        public List<BorrowerDTO> SearchBorrowerID(int id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
             {
-                Borrower b = entities.Borrowers.Where(x => x.borrowerID == id).FirstOrDefault();
-                BorrowerDTO b1 = new BorrowerDTO(b);
-
-                return b1;
+                try
+                {
+                    List<BorrowerDTO> oDto = new List<BorrowerDTO>();
+                    var b = entities.Borrowers.Where(x => x.borrowerID == id).ToList();
+                    foreach (var i in b)
+                    {
+                        BorrowerDTO o = new BorrowerDTO(i);
+                        oDto.Add(o);
+                    }
+                    if (oDto != null)
+                        return oDto;
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
         }
 
@@ -69,13 +82,15 @@ namespace LibraryManagement.DAO
                 try
                 {
                     List<BorrowerDTO> oDto = new List<BorrowerDTO>();
-                    var b = entities.Borrowers.Where(x => x.borrowerName.Equals(name)).ToList();
+                    var b = entities.Borrowers.Where(x => x.borrowerName.Contains(name)).ToList();
                     foreach (var i in b)
                     {
                         BorrowerDTO o = new BorrowerDTO(i);
                         oDto.Add(o);
                     }
-                    return oDto;
+                    if (oDto != null)
+                        return oDto;
+                    return null;
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +112,9 @@ namespace LibraryManagement.DAO
                     BorrowerDTO o = new BorrowerDTO(i);
                     oDto.Add(o);
                 }
-                return oDto;
+                if (oDto != null)
+                    return oDto;
+                return null;
             }
             
         }

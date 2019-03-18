@@ -23,41 +23,33 @@ namespace LibraryManagement.GUI
         public void SetDayTime()
         {
             DateTimePicker.Value = DateTime.Today;
+            BorrowerIDLabel.Text = BorrowerBUS.Instance.CreateBorrowerID().ToString();
         }
 
-        public void CheckValues()
-        {
-            //if (BorrowerBUS.Instance.CheckNullOrEmpty(NameTextBox.Text))
-            //{
-            //    MessageBox.Show("BorrowerName must not be empty.", "Inform");
-            //}
-        }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //var B = new DTO.BorrowerDTO();
-            //B.BorrowerID = 1;
-            //B.BorrowerName =NameTextBox.Text.Trim();
-            //if (MaleButton.Checked)
-            //{
-            //    B.BorrowerGender = "Male";
-            //}
-            //if(FemaleButton.Checked)
-            //{
-            //    B.BorrowerGender = "Female";
-            //}
-            //B.BorrowerBirthDate = DateTimePicker.Value;
-            //B.BorrowerAddress = AddressTextBox.Text.Trim();
-            //B.BorrowerPhone = PhoneTextBox.Text.Trim();
-            //B.BorrowerEmail = MailTextBox.Text.Trim();
+            var B = new DTO.BorrowerDTO();
+            B.BorrowerID = BorrowerBUS.Instance.CreateBorrowerID();
+            B.BorrowerName = BorrowerBUS.Instance.RemoveExtraWhitespaces(NameTextBox.Text.Trim());
+            if (MaleButton.Checked)
+            {
+                B.BorrowerGender = "Male";
+            }
+            if (FemaleButton.Checked)
+            {
+                B.BorrowerGender = "Female";
+            }
+            B.BorrowerBirthDate = DateTimePicker.Value;
+            B.BorrowerAddress = AddressTextBox.Text.Trim();
+            B.BorrowerPhone = PhoneTextBox.Text.Trim();
+            B.BorrowerEmail = MailTextBox.Text.Trim();
 
-            //bool d =BorrowerBUS.Instance.AddBorrower(B);
-            //if (d)
-            //    MessageBox.Show("A borrower have been added.","Inform");
-            //else
-            //    MessageBox.Show("Can't add this borrower.", "Inform");
-
-            CheckValues();
+            bool d = BorrowerBUS.Instance.AddBorrower(B);
+            if (d)
+                MessageBox.Show("A borrower have been added", "Inform");
+            else
+                MessageBox.Show("Can't add this borrower.", "Inform");
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -87,7 +79,6 @@ namespace LibraryManagement.GUI
             if (string.IsNullOrEmpty(AddressTextBox.Text.Trim()))
             {
                 errorProvider.SetError(AddressTextBox, "Borrower address is required.");
-                // e.fo
                 e.Cancel = true;
 
                 //  borrowerIdTxt.Focus();
@@ -111,8 +102,18 @@ namespace LibraryManagement.GUI
             }
             else
             {
-                e.Cancel = false;
-                errorProvider.SetError(PhoneTextBox, string.Empty);
+                if (!BorrowerBUS.Instance.CheckPhoneNumber(PhoneTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("A phone number incorrest.", "Inform");
+                    errorProvider.SetError(MailTextBox, "Borrower email incorrect.");
+                    //e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                    errorProvider.SetError(MailTextBox, string.Empty);
+                }
+
             }
         }
 
@@ -121,17 +122,16 @@ namespace LibraryManagement.GUI
             if (string.IsNullOrEmpty(MailTextBox.Text.Trim()))
             {
                 errorProvider.SetError(MailTextBox, "Borrower address is required.");
-                // e.fo
+                MessageBox.Show("Textbox not empty.", "Inform");
                 e.Cancel = true;
 
                 //  borrowerIdTxt.Focus();
             }
             else
             {
-                e.Cancel = false;
-                errorProvider.SetError(MailTextBox, string.Empty);
                 if (!BorrowerBUS.Instance.CheckEmail(MailTextBox.Text.Trim()))
                 {
+                    MessageBox.Show("A email incorrest.", "Inform");
                     errorProvider.SetError(MailTextBox, "Borrower email incorrect.");
                     e.Cancel = true;
                 }
