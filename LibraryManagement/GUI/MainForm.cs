@@ -20,6 +20,13 @@ namespace LibraryManagement.GUI
            
         }
 
+        public void RemoveItem()
+        {
+            foreach (Control item in MainPanel.Controls.OfType<Form>())
+            {
+                MainPanel.Controls.Remove(item);
+            }
+        }
         private void borrowBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // if (myUC1 != null) myUC1.Dispose();
@@ -36,6 +43,28 @@ namespace LibraryManagement.GUI
             rnb = new ReturningBook();
             this.Controls.Add(rnb);
            // rnb.BringToFront();
+        }
+
+        private void addBorrowerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveItem();
+            AddBorrowerForm borrowerForm = new AddBorrowerForm();
+            borrowerForm.TopLevel = false;
+            MainPanel.Controls.Add(borrowerForm);
+            borrowerForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            borrowerForm.Dock = DockStyle.Fill;
+            borrowerForm.Show();
+        }
+
+        private void searchBorrowerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveItem();
+            SearchBorrowerForm searchBorrower = new SearchBorrowerForm();
+            searchBorrower.TopLevel = false;
+            MainPanel.Controls.Add(searchBorrower);
+            searchBorrower.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            searchBorrower.Dock = DockStyle.Fill;
+            searchBorrower.Show();
         }
     }
 }
