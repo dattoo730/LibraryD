@@ -38,6 +38,7 @@
             this.transactionManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrowBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,13 +68,13 @@
             // addBookToolStripMenuItem
             // 
             this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
-            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addBookToolStripMenuItem.Text = "Add Book";
             // 
             // searchBookToolStripMenuItem
             // 
             this.searchBookToolStripMenuItem.Name = "searchBookToolStripMenuItem";
-            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchBookToolStripMenuItem.Text = "Search Book";
             // 
             // borrowerManagementToolStripMenuItem
@@ -88,14 +89,16 @@
             // addBorrowerToolStripMenuItem
             // 
             this.addBorrowerToolStripMenuItem.Name = "addBorrowerToolStripMenuItem";
-            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addBorrowerToolStripMenuItem.Text = "Add Borrower";
+            this.addBorrowerToolStripMenuItem.Click += new System.EventHandler(this.addBorrowerToolStripMenuItem_Click);
             // 
             // searchBorrowerToolStripMenuItem
             // 
             this.searchBorrowerToolStripMenuItem.Name = "searchBorrowerToolStripMenuItem";
-            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchBorrowerToolStripMenuItem.Text = "Search Borrower";
+            this.searchBorrowerToolStripMenuItem.Click += new System.EventHandler(this.searchBorrowerToolStripMenuItem_Click);
             // 
             // transactionManagementToolStripMenuItem
             // 
@@ -120,11 +123,19 @@
             this.returnBooksToolStripMenuItem.Text = "Return Books";
             this.returnBooksToolStripMenuItem.Click += new System.EventHandler(this.returnBooksToolStripMenuItem_Click);
             // 
+            // MainPanel
+            // 
+            this.MainPanel.Location = new System.Drawing.Point(12, 27);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(839, 509);
+            this.MainPanel.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 548);
+            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -149,5 +160,6 @@
         private System.Windows.Forms.ToolStripMenuItem transactionManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrowBooksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnBooksToolStripMenuItem;
+        private System.Windows.Forms.Panel MainPanel;
     }
 }
