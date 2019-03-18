@@ -66,5 +66,27 @@ namespace LibraryManagement.GUI
             searchBorrower.Dock = DockStyle.Fill;
             searchBorrower.Show();
         }
+
+        private void addBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveItem();
+            AddBookForm addBook = new AddBookForm();
+            addBook.TopLevel = false;
+            MainPanel.Controls.Add(addBook);
+            addBook.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            addBook.Dock = DockStyle.Fill;
+            addBook.Show();
+        }
+
+        private void searchBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveItem();
+            SearchBookForm searchBook = new SearchBookForm();
+            searchBook.TopLevel = false;
+            MainPanel.Controls.Add(searchBook);
+            searchBook.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            searchBook.Dock = DockStyle.Fill;
+            searchBook.Show();
+        }
     }
 }

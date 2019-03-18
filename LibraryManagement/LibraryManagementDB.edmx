@@ -33,7 +33,7 @@
             <PropertyRef Name="categoryID" />
           </Key>
           <Property Name="categoryID" Type="int" Nullable="false" />
-          <Property Name="categoryName" Type="varchar" MaxLength="30" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="DetailOrder">
           <Key>
@@ -72,7 +72,7 @@
             <PropertyRef Name="statusID" />
           </Key>
           <Property Name="statusID" Type="int" Nullable="false" />
-          <Property Name="statusName" Type="varchar" MaxLength="30" />
+          <Property Name="statusName" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="SupplyHistory">
           <Key>
@@ -95,7 +95,6 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__DetailOrd__bookI__47DBAE45">
-        <Association Name="FK__DetailOrd__bookI__20C1E124">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
           <ReferentialConstraint>
@@ -107,7 +106,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailOrd__order__1FCDBCEB">
+        <Association Name="FK__DetailOrd__order__46E78A0C">
           <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="1" />
           <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,7 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderTbl__borrow__1B0907CE">
+        <Association Name="FK__OrderTbl__borrow__4222D4EF">
           <End Role="Borrower" Type="Self.Borrower" Multiplicity="0..1" />
           <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,15 +199,16 @@
           <EntitySet Name="OrderTbl" EntityType="Self.OrderTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusObject" EntityType="Self.StatusObject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupplyHistory" EntityType="Self.SupplyHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
             <End Role="Book" EntitySet="Book" />
             <End Role="DetailOrder" EntitySet="DetailOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailOrd__order__1FCDBCEB" Association="Self.FK__DetailOrd__order__1FCDBCEB">
+          <AssociationSet Name="FK__DetailOrd__order__46E78A0C" Association="Self.FK__DetailOrd__order__46E78A0C">
             <End Role="OrderTbl" EntitySet="OrderTbl" />
             <End Role="DetailOrder" EntitySet="DetailOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderTbl__borrow__1B0907CE" Association="Self.FK__OrderTbl__borrow__1B0907CE">
+          <AssociationSet Name="FK__OrderTbl__borrow__4222D4EF" Association="Self.FK__OrderTbl__borrow__4222D4EF">
             <End Role="Borrower" EntitySet="Borrower" />
             <End Role="OrderTbl" EntitySet="OrderTbl" />
           </AssociationSet>
@@ -248,7 +248,7 @@
           <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="quantity" Type="Int32" />
           <Property Name="categoryID" Type="Int32" />
-          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__bookI__20C1E124" FromRole="Book" ToRole="DetailOrder" />
+          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__bookI__47DBAE45" FromRole="Book" ToRole="DetailOrder" />
           <NavigationProperty Name="Category" Relationship="Self.fk_Book_id_category" FromRole="Book" ToRole="Category" />
           <NavigationProperty Name="SupplyHistories" Relationship="Self.fk_Book_id_SupplyHistory" FromRole="Book" ToRole="SupplyHistory" />
         </EntityType>
@@ -261,8 +261,8 @@
           <Property Name="borrowerBirthDate" Type="DateTime" Precision="3" />
           <Property Name="borrowerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="borrowerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="borrowerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="borrowerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="borrowerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="borrowerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderTbls" Relationship="Self.FK__OrderTbl__borrow__4222D4EF" FromRole="Borrower" ToRole="OrderTbl" />
         </EntityType>
         <EntityType Name="Category">
@@ -270,7 +270,7 @@
             <PropertyRef Name="categoryID" />
           </Key>
           <Property Name="categoryID" Type="Int32" Nullable="false" />
-          <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="Self.fk_Book_id_category" FromRole="Category" ToRole="Book" />
         </EntityType>
         <EntityType Name="DetailOrder">
@@ -281,8 +281,8 @@
           <Property Name="orderID" Type="Int32" Nullable="false" />
           <Property Name="bookID" Type="Int32" Nullable="false" />
           <Property Name="quantityBorrowed" Type="Int32" />
-          <NavigationProperty Name="Book" Relationship="Self.FK__DetailOrd__bookI__20C1E124" FromRole="DetailOrder" ToRole="Book" />
-          <NavigationProperty Name="OrderTbl" Relationship="Self.FK__DetailOrd__order__1FCDBCEB" FromRole="DetailOrder" ToRole="OrderTbl" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__DetailOrd__bookI__47DBAE45" FromRole="DetailOrder" ToRole="Book" />
+          <NavigationProperty Name="OrderTbl" Relationship="Self.FK__DetailOrd__order__46E78A0C" FromRole="DetailOrder" ToRole="OrderTbl" />
         </EntityType>
         <EntityType Name="Librarian">
           <Key>
@@ -308,8 +308,8 @@
           <Property Name="returnDate" Type="DateTime" Precision="3" />
           <Property Name="status" Type="Int32" />
           <Property Name="librarianID" Type="Int32" />
-          <NavigationProperty Name="Borrower" Relationship="Self.FK__OrderTbl__borrow__1B0907CE" FromRole="OrderTbl" ToRole="Borrower" />
-          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__order__1FCDBCEB" FromRole="OrderTbl" ToRole="DetailOrder" />
+          <NavigationProperty Name="Borrower" Relationship="Self.FK__OrderTbl__borrow__4222D4EF" FromRole="OrderTbl" ToRole="Borrower" />
+          <NavigationProperty Name="DetailOrders" Relationship="Self.FK__DetailOrd__order__46E78A0C" FromRole="OrderTbl" ToRole="DetailOrder" />
           <NavigationProperty Name="Librarian" Relationship="Self.fk_Librarian_id_Ordertbl" FromRole="OrderTbl" ToRole="Librarian" />
           <NavigationProperty Name="StatusObject" Relationship="Self.fk_Status_id_Ordertbl" FromRole="OrderTbl" ToRole="StatusObject" />
         </EntityType>
@@ -318,7 +318,7 @@
             <PropertyRef Name="statusID" />
           </Key>
           <Property Name="statusID" Type="Int32" Nullable="false" />
-          <Property Name="statusName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="statusName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="OrderTbls" Relationship="Self.fk_Status_id_Ordertbl" FromRole="StatusObject" ToRole="OrderTbl" />
         </EntityType>
         <EntityType Name="SupplyHistory">
@@ -332,6 +332,16 @@
           <Property Name="supplyDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Book" Relationship="Self.fk_Book_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Book" />
           <NavigationProperty Name="Librarian" Relationship="Self.fk_Librarian_id_SupplyHistory" FromRole="SupplyHistory" ToRole="Librarian" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK__DetailOrd__bookI__47DBAE45">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
@@ -369,7 +379,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderTbl__borrow__1B0907CE">
+        <Association Name="FK__OrderTbl__borrow__4222D4EF">
           <End Role="Borrower" Type="Self.Borrower" Multiplicity="0..1" />
           <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -381,7 +391,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailOrd__order__1FCDBCEB">
+        <Association Name="FK__DetailOrd__order__46E78A0C">
           <End Role="OrderTbl" Type="Self.OrderTbl" Multiplicity="1" />
           <End Role="DetailOrder" Type="Self.DetailOrder" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,6 +448,7 @@
           <EntitySet Name="OrderTbls" EntityType="Self.OrderTbl" />
           <EntitySet Name="StatusObjects" EntityType="Self.StatusObject" />
           <EntitySet Name="SupplyHistories" EntityType="Self.SupplyHistory" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK__DetailOrd__bookI__47DBAE45" Association="Self.FK__DetailOrd__bookI__47DBAE45">
             <End Role="Book" EntitySet="Books" />
             <End Role="DetailOrder" EntitySet="DetailOrders" />
@@ -450,11 +461,11 @@
             <End Role="Book" EntitySet="Books" />
             <End Role="SupplyHistory" EntitySet="SupplyHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderTbl__borrow__1B0907CE" Association="Self.FK__OrderTbl__borrow__1B0907CE">
+          <AssociationSet Name="FK__OrderTbl__borrow__4222D4EF" Association="Self.FK__OrderTbl__borrow__4222D4EF">
             <End Role="Borrower" EntitySet="Borrowers" />
             <End Role="OrderTbl" EntitySet="OrderTbls" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailOrd__order__1FCDBCEB" Association="Self.FK__DetailOrd__order__1FCDBCEB">
+          <AssociationSet Name="FK__DetailOrd__order__46E78A0C" Association="Self.FK__DetailOrd__order__46E78A0C">
             <End Role="OrderTbl" EntitySet="OrderTbls" />
             <End Role="DetailOrder" EntitySet="DetailOrders" />
           </AssociationSet>

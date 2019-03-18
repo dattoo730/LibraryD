@@ -168,6 +168,9 @@
     <Compile Include="SupplyHistory.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>LibraryManagementDB.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>
