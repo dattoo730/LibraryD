@@ -46,16 +46,14 @@ namespace LibraryManagement.BUS
 
             foreach (var i in datas)
             {
-                DataRow dr = dt.NewRow();
-               
+                DataRow dr = dt.NewRow();               
                 dr[0] = i.OrderId;
                 dr[1] = BorrowerDAO.Instance.SearchBorrowerID(i.BorrowerID).FirstOrDefault().BorrowerName;
                 dr[2] = i.DateBorrowed;
                 dr[3] = OrdersDAO.Instance.SearchStatusObjectByID(i.Status).FirstOrDefault().statusName;
 
                 dt.Rows.Add(dr);
-            }
-                     
+            }                    
 
             dv = new DataView(dt);            
             data.DataSource = dv;

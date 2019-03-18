@@ -23,7 +23,7 @@ namespace LibraryManagement.DAO
             private set { DataProvider.instance = value; }
         }
         private DataProvider() { }
-        private string connectionStr = @"Data Source=LAPTOP-IB6I5C3J\SQLEXPRESS;Initial Catalog=LibraryManagement;Integrated Security=True";
+        private string connectionStr = @"Data Source=LE-THANH-DAT\THANHDAT;Initial Catalog=LibraryManagement;Integrated Security=True";
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {

@@ -260,7 +260,7 @@
             this.borrowerIdTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.borrowerIdTxt_KeyUp);
             this.borrowerIdTxt.Validating += new System.ComponentModel.CancelEventHandler(this.borrowerIdTxt_Validating);
             // 
-            // ReturningBook
+            // BorrowingBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -287,7 +287,7 @@
             this.Controls.Add(this.borrowerIdTxt);
             this.MaximumSize = new System.Drawing.Size(586, 489);
             this.MinimumSize = new System.Drawing.Size(586, 489);
-            this.Name = "ReturningBook";
+            this.Name = "BorrowingBooks";
             this.Size = new System.Drawing.Size(586, 489);
             this.Load += new System.EventHandler(this.ReturningBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.booksDgv)).EndInit();
