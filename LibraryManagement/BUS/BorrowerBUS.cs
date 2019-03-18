@@ -14,7 +14,6 @@ namespace LibraryManagement.BUS
     class BorrowerBUS
     {
         private static BorrowerBUS instance;
-        private DataView dv;
         private DataTable dt = new DataTable();
 
         public static BorrowerBUS Instance
@@ -108,24 +107,30 @@ namespace LibraryManagement.BUS
         public void SearchBorrowerBaseID(DataGridView data, int id)
         {
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerID(id);
-            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (data != null)
+            {
+                MessageBox.Show("Not found.", "Inform");
+            }
         }
 
         public void SearchBorrowerBaseName(DataGridView data,String name)
         {
 
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerName(name);
-            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (data.RowCount < 1)
+            {
+                MessageBox.Show("Not found.", "Inform");
+            }
         }
 
-        public void ShowAllBorrower(DataGridView data, String name)
+        public void ShowAllBorrower(DataGridView data)
         {
 
             data.DataSource = BorrowerDAO.Instance.GetAllBorrower();
-            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if(data.RowCount < 1)
+            {
+                MessageBox.Show("Not Data.", "Inform");
+            }
         }
     }
 }
