@@ -14,10 +14,12 @@ namespace LibraryManagement.GUI
 {
     public partial class AddBorrowerForm : Form
     {
+        
         public AddBorrowerForm()
         {
             InitializeComponent();
             SetDayTime();
+
         }
 
         public void SetDayTime()

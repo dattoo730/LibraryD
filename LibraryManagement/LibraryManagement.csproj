@@ -75,6 +75,7 @@
     <Compile Include="DAO\BorrowerDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\LoginLibrarianDAO.cs" />
+    <Compile Include="DAO\DetailOrderDAO.cs" />
     <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DetailOrder.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
@@ -83,6 +84,7 @@
     <Compile Include="DTO\BorrowerDTO.cs" />
     <Compile Include="DTO\CurrentSession.cs" />
     <Compile Include="DTO\DetailOrdersDTO.cs" />
+    <Compile Include="DTO\JoinOrderBorrowerDTO.cs" />
     <Compile Include="DTO\MessageResult.cs" />
     <Compile Include="DTO\OrdersDTO.cs" />
     <Compile Include="GUI\AddBookForm.cs">
@@ -115,11 +117,17 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\BorrowBooks.cs">
-      <SubType>Form</SubType>
+    <Compile Include="GUI\BorrowingBooks.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\BorrowBooks.Designer.cs">
-      <DependentUpon>BorrowBooks.cs</DependentUpon>
+    <Compile Include="GUI\BorrowingBooks.Designer.cs">
+      <DependentUpon>BorrowingBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ReturningBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ReturningBook.Designer.cs">
+      <DependentUpon>ReturningBook.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\SearchBookForm.cs">
       <SubType>Form</SubType>
@@ -171,6 +179,9 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,11 +191,17 @@
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\BorrowBooks.resx">
-      <DependentUpon>BorrowBooks.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\BorrowingBooks.resx">
+      <DependentUpon>BorrowingBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ReturningBook.resx">
+      <DependentUpon>ReturningBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SearchBorrowerForm.resx">
       <DependentUpon>SearchBorrowerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SearchBookForm.resx">
+      <DependentUpon>SearchBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
