@@ -85,6 +85,7 @@
             this.ordersDgv.Name = "ordersDgv";
             this.ordersDgv.Size = new System.Drawing.Size(427, 133);
             this.ordersDgv.TabIndex = 2;
+            this.ordersDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDgv_CellClick);
             // 
             // searchOrderOptionsCb
             // 
@@ -210,6 +211,7 @@
             this.returnNowBtn.TabIndex = 4;
             this.returnNowBtn.Text = "Return It";
             this.returnNowBtn.UseVisualStyleBackColor = true;
+            this.returnNowBtn.Click += new System.EventHandler(this.returnNowBtn_Click);
             // 
             // orderReturnedDateDtp
             // 
