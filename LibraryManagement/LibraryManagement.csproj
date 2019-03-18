@@ -64,6 +64,7 @@
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="BUS\BooksBUS.cs" />
+    <Compile Include="BUS\BorrowerBUS.cs" />
     <Compile Include="BUS\BorrowingBookBUS.cs" />
     <Compile Include="BUS\OrdersBUS.cs" />
     <Compile Include="Category.cs">
@@ -153,6 +154,9 @@
     <Compile Include="SupplyHistory.cs">
       <DependentUpon>LibraryManagementDB.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\BorrowBooks.resx">
       <DependentUpon>BorrowBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SearchBookForm.resx">
+      <DependentUpon>SearchBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
