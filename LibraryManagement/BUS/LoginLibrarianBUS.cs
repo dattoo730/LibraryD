@@ -33,5 +33,13 @@ namespace LibraryManagement.BUS
             }
             return false;
         }
+        public bool CheckNumber(String name)
+        {
+            if (name.All(char.IsDigit))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

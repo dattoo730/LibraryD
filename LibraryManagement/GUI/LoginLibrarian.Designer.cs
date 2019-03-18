@@ -41,7 +41,7 @@
             // checkShowPassword
             // 
             this.checkShowPassword.AutoSize = true;
-            this.checkShowPassword.Location = new System.Drawing.Point(172, 127);
+            this.checkShowPassword.Location = new System.Drawing.Point(172, 124);
             this.checkShowPassword.Name = "checkShowPassword";
             this.checkShowPassword.Size = new System.Drawing.Size(96, 17);
             this.checkShowPassword.TabIndex = 13;
@@ -127,6 +127,7 @@
             this.Controls.Add(this.userId);
             this.Controls.Add(this.lblUser);
             this.Name = "LoginLibrarian";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginLibrarian";
             this.ResumeLayout(false);
             this.PerformLayout();

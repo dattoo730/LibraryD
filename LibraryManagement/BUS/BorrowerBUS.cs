@@ -79,7 +79,7 @@ namespace LibraryManagement.BUS
         //check phone number pattern
         public bool CheckPhoneNumber(String p)
         {
-            if (p.All(char.IsDigit) && !p.Contains(" "))
+            if (p.All(char.IsDigit) && !p.Contains(" ") &&(p.Length == 10 || p.Length == 11) )
             {
                 return true;
             }
@@ -104,10 +104,19 @@ namespace LibraryManagement.BUS
             return false;
         }
 
+        public bool Name(String name)
+        {
+            if (name.Any(char.IsDigit))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void SearchBorrowerBaseID(DataGridView data, int id)
         {
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerID(id);
-            if (data != null)
+            if (data.RowCount< 1)
             {
                 MessageBox.Show("Not found.", "Inform");
             }
@@ -122,7 +131,7 @@ namespace LibraryManagement.BUS
                 MessageBox.Show("Not found.", "Inform");
             }
         }
-
+        
         public void ShowAllBorrower(DataGridView data)
         {
 

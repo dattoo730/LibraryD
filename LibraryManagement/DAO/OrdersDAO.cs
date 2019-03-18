@@ -121,14 +121,18 @@ namespace LibraryManagement.DAO
                         }
 
                     }
-
-                    mr.isSuccess = false;
-                    string mess = "";
-                    foreach (var k in errorDetailOrders)
+                    else
                     {
-                        mess += k.BookId.ToString() + " ";
+                        mr.isSuccess = false;
+                        string mess = "";
+                        foreach (var k in errorDetailOrders)
+                        {
+                            mess += k.BookId.ToString() + " ";
+                        }
+                        mr.returnMessage = "Some Books were out of stock. Here are these of BookIDs: " + mess;
                     }
-                    mr.returnMessage = "Some Books were out of stock. Here are these of BookIDs: " + mess;
+
+                   
                    
 
                 }

@@ -15,7 +15,8 @@ namespace LibraryManagement
     
     public partial class LibraryManagementEntities : DbContext
     {
-        public LibraryManagementEntities() : base("name=LibraryManagementEntities")
+        public LibraryManagementEntities()
+            : base("name=LibraryManagementEntities")
         {
         }
     

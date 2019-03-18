@@ -21,10 +21,17 @@ namespace LibraryManagement.GUI
         MainForm mn;
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+
             if(!String.IsNullOrEmpty(userId.Text)&& !String.IsNullOrEmpty(userPass.Text))
             {
-              var a =  LoginLibrarianBUS.Instance.checkLogin(Convert.ToInt32(userId.Text), userPass.Text);
-               if(a==true)
+                if (!LoginLibrarianBUS.Instance.CheckNumber(userId.Text))
+                {
+                    lblCorrect.Text = " User name must be number.";
+                    return;
+                }
+                    
+                var a =  LoginLibrarianBUS.Instance.checkLogin(Convert.ToInt32(userId.Text), userPass.Text);
+                if(a==true)
                 {
                     this.Hide();
                     mn = new MainForm();// chuyen trang chinh
@@ -37,6 +44,10 @@ namespace LibraryManagement.GUI
                     userPass.Text = "";
                     lblUser.Focus();
                 }
+            }
+            else
+            {
+                lblCorrect.Text = "User name or password not empty.";
             }
         }
 

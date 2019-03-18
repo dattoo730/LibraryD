@@ -99,11 +99,11 @@
     <Compile Include="GUI\AddBorrowerForm.Designer.cs">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\AddBorrwerBookForm.cs">
+    <Compile Include="GUI\BorrowingBooks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\AddBorrwerBookForm.Designer.cs">
-      <DependentUpon>AddBorrwerBookForm.cs</DependentUpon>
+    <Compile Include="GUI\BorrowingBooks.Designer.cs">
+      <DependentUpon>BorrowingBooks.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\LoginLibrarian.cs">
       <SubType>Form</SubType>
@@ -117,14 +117,8 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\BorrowingBooks.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\BorrowingBooks.Designer.cs">
-      <DependentUpon>BorrowingBooks.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\ReturningBook.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\ReturningBook.Designer.cs">
       <DependentUpon>ReturningBook.cs</DependentUpon>
@@ -134,12 +128,6 @@
     </Compile>
     <Compile Include="GUI\SearchBookForm.Designer.cs">
       <DependentUpon>SearchBookForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\SearchBorrower.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\SearchBorrower.Designer.cs">
-      <DependentUpon>SearchBorrower.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\SearchBorrowerForm.cs">
       <SubType>Form</SubType>
@@ -185,14 +173,14 @@
     <EmbeddedResource Include="GUI\AddBorrowerForm.resx">
       <DependentUpon>AddBorrowerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BorrowingBooks.resx">
+      <DependentUpon>BorrowingBooks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginLibrarian.resx">
       <DependentUpon>LoginLibrarian.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\BorrowingBooks.resx">
-      <DependentUpon>BorrowingBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReturningBook.resx">
       <DependentUpon>ReturningBook.cs</DependentUpon>
