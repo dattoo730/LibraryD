@@ -123,7 +123,7 @@ namespace LibraryManagement.BUS
             //dt.Columns.Add(new DataColumn("Quantity"));
             //dv = new DataView(dt);
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerName(name);
-            data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
