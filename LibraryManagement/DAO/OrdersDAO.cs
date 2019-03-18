@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,6 +208,17 @@ namespace LibraryManagement.DAO
             }
             return null;
         }
+        public OrderTbl FindOrderByIdNotDTO(int id)
+        {
+          return db.OrderTbls.Find(id);
+        }
+
+        public List<DetailOrder> FindDetailOrderByOid(int id)
+        {
+            var a = db.DetailOrders.Where(x => x.orderID == id).ToList();
+
+            return a;
+        }
         public List<StatusObject> SearchStatusObjectByID(int? id)
         {
             using (LibraryManagementEntities entities = new LibraryManagementEntities())
@@ -234,5 +246,29 @@ namespace LibraryManagement.DAO
           return temp;
         }
 
+        public bool ReturnOrder(int orderId)
+        {
+            bool isSuccess = false;
+            var order = db.OrderTbls.Find(orderId);
+            if(order != null)
+            {
+                order.status = 2;
+                db.Entry(order).State = EntityState.Modified;
+                
+                var detailsOrder = FindDetailOrderByOid(orderId);
+                if(detailsOrder.Count > 0)
+                {
+                    foreach(var i in detailsOrder)
+                    {
+                        Book b = db.Books.Find(i.bookID);
+                        b.quantity += i.quantityBorrowed;
+                        db.Entry(b).State = EntityState.Modified;
+                        isSuccess = true;
+                    }
+                }
+            }
+            db.SaveChanges();
+            return isSuccess;
+        }
     }
 }
