@@ -88,5 +88,10 @@ namespace LibraryManagement.GUI
             searchBook.Dock = DockStyle.Fill;
             searchBook.Show();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
