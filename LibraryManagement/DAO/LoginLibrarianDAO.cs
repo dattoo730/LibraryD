@@ -11,7 +11,7 @@ namespace LibraryManagement.DAO
     {
         private static LoginLibrarianDAO instance;
 
-        //create new class BorrowerDAO
+        //create new class LoginLiBrarianDAO
         public static LoginLibrarianDAO Instance
         {
             get

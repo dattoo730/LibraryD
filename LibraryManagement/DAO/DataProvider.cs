@@ -21,7 +21,7 @@ namespace LibraryManagement.DAO
             private set { DataProvider.instance = value; }
         }
         private DataProvider() { }
-        private string connectionStr = @"Data Source=LE-THANH-DAT\THANHDAT;Initial Catalog=LibraryManagement;Integrated Security=True";
+        private string connectionStr = @"Data Source=DESKTOP-HTMG8LD;Initial Catalog=LibraryManagement;Integrated Security=True";
 
         public void ExecuteQuery(string query)
         {
