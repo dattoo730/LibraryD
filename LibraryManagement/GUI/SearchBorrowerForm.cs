@@ -19,6 +19,7 @@ namespace LibraryManagement.GUI
 
         }
 
+        //envent button1
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(BorrowerIDTextBox.Text.Trim()) && String.IsNullOrEmpty(NameTextBox.Text.Trim()))
