@@ -38,10 +38,8 @@
             this.transactionManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrowBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -70,13 +68,13 @@
             // addBookToolStripMenuItem
             // 
             this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
-            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addBookToolStripMenuItem.Text = "Add Book";
             // 
             // searchBookToolStripMenuItem
             // 
             this.searchBookToolStripMenuItem.Name = "searchBookToolStripMenuItem";
-            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchBookToolStripMenuItem.Text = "Search Book";
             // 
             // borrowerManagementToolStripMenuItem
@@ -91,14 +89,16 @@
             // addBorrowerToolStripMenuItem
             // 
             this.addBorrowerToolStripMenuItem.Name = "addBorrowerToolStripMenuItem";
-            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addBorrowerToolStripMenuItem.Text = "Add Borrower";
+            this.addBorrowerToolStripMenuItem.Click += new System.EventHandler(this.addBorrowerToolStripMenuItem_Click);
             // 
             // searchBorrowerToolStripMenuItem
             // 
             this.searchBorrowerToolStripMenuItem.Name = "searchBorrowerToolStripMenuItem";
-            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchBorrowerToolStripMenuItem.Text = "Search Borrower";
+            this.searchBorrowerToolStripMenuItem.Click += new System.EventHandler(this.searchBorrowerToolStripMenuItem_Click);
             // 
             // transactionManagementToolStripMenuItem
             // 
@@ -112,40 +112,30 @@
             // borrowBooksToolStripMenuItem
             // 
             this.borrowBooksToolStripMenuItem.Name = "borrowBooksToolStripMenuItem";
-            this.borrowBooksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.borrowBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.borrowBooksToolStripMenuItem.Text = "Borrow Books";
+            this.borrowBooksToolStripMenuItem.Click += new System.EventHandler(this.borrowBooksToolStripMenuItem_Click);
             // 
             // returnBooksToolStripMenuItem
             // 
             this.returnBooksToolStripMenuItem.Name = "returnBooksToolStripMenuItem";
-            this.returnBooksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.returnBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.returnBooksToolStripMenuItem.Text = "Return Books";
+            this.returnBooksToolStripMenuItem.Click += new System.EventHandler(this.returnBooksToolStripMenuItem_Click);
             // 
-            // dataGridView1
+            // MainPanel
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(362, 253);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(455, 85);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.MainPanel.Location = new System.Drawing.Point(12, 27);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(839, 509);
+            this.MainPanel.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 548);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -153,7 +143,6 @@
             this.Text = "MainForm";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,7 +160,6 @@
         private System.Windows.Forms.ToolStripMenuItem transactionManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrowBooksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnBooksToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel MainPanel;
     }
 }
