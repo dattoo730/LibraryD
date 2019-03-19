@@ -71,6 +71,7 @@
             this.BorrowerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BorrowerDataGridView.Location = new System.Drawing.Point(3, 51);
             this.BorrowerDataGridView.Name = "BorrowerDataGridView";
+            this.BorrowerDataGridView.ReadOnly = true;
             this.BorrowerDataGridView.Size = new System.Drawing.Size(784, 283);
             this.BorrowerDataGridView.TabIndex = 19;
             // 
@@ -128,6 +129,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SearchBorrowerForm";
             this.Text = "SearchBorrower";
+            this.Load += new System.EventHandler(this.SearchBorrowerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BorrowerDataGridView)).EndInit();

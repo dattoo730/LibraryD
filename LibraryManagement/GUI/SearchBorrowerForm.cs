@@ -54,5 +54,10 @@ namespace LibraryManagement.GUI
         {
             BorrowerBUS.Instance.ShowAllBorrower(BorrowerDataGridView);
         }
+
+        private void SearchBorrowerForm_Load(object sender, EventArgs e)
+        {
+            BorrowerBUS.Instance.ShowAllBorrower(BorrowerDataGridView);
+        }
     }
 }
