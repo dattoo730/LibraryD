@@ -1,17 +1,17 @@
-﻿using System;
+﻿using LibraryManagement.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LibraryManagement.BUS;
 
 namespace LibraryManagement.GUI
 {
-    public partial class BorrowingBooks : UserControl
+    public partial class BorrowingBooks : Form
     {
         public BorrowingBooks()
         {
@@ -20,23 +20,11 @@ namespace LibraryManagement.GUI
             BorrowingBookBUS.Instance.InitializeBookDataGridViewColumns(booksDgv);
             BorrowingBookBUS.Instance.SetDefaultValues(orderCreatedDateDtp, quantityBookTxt);
             BorrowingBookBUS.Instance.ShowCurrentSessionInfo(librarianIdTxt, librarianNameTxt);
-
         }
 
-        private void addBookBtn_Click(object sender, EventArgs e)
+        private void BorrowingBooks_Load(object sender, EventArgs e)
         {
-            if (this.ValidateChildren())
-            {
-                BorrowingBookBUS.Instance.AddBookToDataGridView(booksDgv, chooseBookCb, quantityBookTxt);
-            }
-        }
-
-        private void makeOrderBtn_Click(object sender, EventArgs e)
-        {
-            if (this.ValidateChildren())
-            {
-                BorrowingBookBUS.Instance.MakeBookBorrowingOrder(booksDgv, borrowerIdTxt, librarianIdTxt);
-            }
+            borrowerIdTxt.Focus();
         }
 
         private void borrowerIdTxt_KeyUp(object sender, KeyEventArgs e)
@@ -107,9 +95,20 @@ namespace LibraryManagement.GUI
             }
         }
 
-        private void ReturningBook_Load(object sender, EventArgs e)
+        private void addBookBtn_Click(object sender, EventArgs e)
         {
-            borrowerIdTxt.Focus();
+            if (this.ValidateChildren())
+            {
+                BorrowingBookBUS.Instance.AddBookToDataGridView(booksDgv, chooseBookCb, quantityBookTxt);
+            }
+        }
+
+        private void makeOrderBtn_Click(object sender, EventArgs e)
+        {
+            if (this.ValidateChildren())
+            {
+                BorrowingBookBUS.Instance.MakeBookBorrowingOrder(booksDgv, borrowerIdTxt, librarianIdTxt);
+            }
         }
     }
 }

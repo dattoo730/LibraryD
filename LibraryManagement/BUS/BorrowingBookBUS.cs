@@ -37,6 +37,7 @@ namespace LibraryManagement.BUS
 
         public void InitializeBookDataGridViewColumns(DataGridView data)
         {
+            dt = new DataTable();
             dt.Columns.Add(new DataColumn("BookID"));
             dt.Columns.Add(new DataColumn("BookName"));
             dt.Columns.Add(new DataColumn("Quantity"));
@@ -174,8 +175,14 @@ namespace LibraryManagement.BUS
                         }                    
                         
                         var temp = OrdersDAO.Instance.InsertNewOrder(detailOrdersDtoLst,ordersDto);
-                        if (temp.isSuccess)                       
+                        if (temp.isSuccess)
+                        {
+
                             MessageBox.Show("Done!");
+                            dataDgv.DataSource = null;
+                            borrowerIdTxt.ResetText();
+                        }
+                           
                         else
                             MessageBox.Show(temp.returnMessage);
 

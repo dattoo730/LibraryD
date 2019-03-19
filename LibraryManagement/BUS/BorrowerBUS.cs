@@ -14,7 +14,6 @@ namespace LibraryManagement.BUS
     class BorrowerBUS
     {
         private static BorrowerBUS instance;
-        private DataView dv;
         private DataTable dt = new DataTable();
 
         public static BorrowerBUS Instance
@@ -80,7 +79,7 @@ namespace LibraryManagement.BUS
         //check phone number pattern
         public bool CheckPhoneNumber(String p)
         {
-            if (p.All(char.IsDigit) && !p.Contains(" "))
+            if (p.All(char.IsDigit) && !p.Contains(" ") &&(p.Length == 10 || p.Length == 11) )
             {
                 return true;
             }
@@ -105,27 +104,42 @@ namespace LibraryManagement.BUS
             return false;
         }
 
+        public bool Name(String name)
+        {
+            if (name.Any(char.IsDigit))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void SearchBorrowerBaseID(DataGridView data, int id)
         {
-            //dt.Columns.Add(new DataColumn("BookID"));
-            //dt.Columns.Add(new DataColumn("BookName"));
-            //dt.Columns.Add(new DataColumn("Quantity"));
-            //dv = new DataView(dt);
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerID(id);
-            //data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (data.RowCount< 1)
+            {
+                MessageBox.Show("Not found.", "Inform");
+            }
         }
+
         public void SearchBorrowerBaseName(DataGridView data,String name)
         {
-            //dt.Columns.Add(new DataColumn("BookID"));
-            //dt.Columns.Add(new DataColumn("BookName"));
-            //dt.Columns.Add(new DataColumn("Quantity"));
-            //dv = new DataView(dt);
+
             data.DataSource = BorrowerDAO.Instance.SearchBorrowerName(name);
-            //data.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            data.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            data.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (data.RowCount < 1)
+            {
+                MessageBox.Show("Not found.", "Inform");
+            }
+        }
+        
+        public void ShowAllBorrower(DataGridView data)
+        {
+
+            data.DataSource = BorrowerDAO.Instance.GetAllBorrower();
+            if(data.RowCount < 1)
+            {
+                MessageBox.Show("Not Data.", "Inform");
+            }
         }
     }
 }

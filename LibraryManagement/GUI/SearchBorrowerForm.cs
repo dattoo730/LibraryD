@@ -19,6 +19,7 @@ namespace LibraryManagement.GUI
 
         }
 
+        //envent button1
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(BorrowerIDTextBox.Text.Trim()) && String.IsNullOrEmpty(NameTextBox.Text.Trim()))
@@ -47,6 +48,11 @@ namespace LibraryManagement.GUI
                     BorrowerBUS.Instance.SearchBorrowerBaseName(BorrowerDataGridView, NameTextBox.Text.Trim());
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BorrowerBUS.Instance.ShowAllBorrower(BorrowerDataGridView);
         }
     }
 }

@@ -31,6 +31,54 @@ namespace LibraryManagement.GUI
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            //check empty
+            if (BorrowerBUS.Instance.CheckNullOrEmpty(NameTextBox.Text.Trim()))
+            {
+                MessageBox.Show("User name is required.", "Inform");
+                return;
+            }
+            else
+            {
+                if (!BorrowerBUS.Instance.Name(NameTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("User name incorrest", "Inform");
+                    return;
+                }
+            }
+          
+            if (BorrowerBUS.Instance.CheckNullOrEmpty(AddressTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Addresses is required.", "Inform");
+                return;
+            }
+
+            if (BorrowerBUS.Instance.CheckNullOrEmpty(PhoneTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Phone is required.", "Inform");
+                return;
+            }
+            else
+            {
+                if (!BorrowerBUS.Instance.CheckPhoneNumber(PhoneTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Phone number incorrest", "Inform");
+                    return;
+                }
+            }
+            if (BorrowerBUS.Instance.CheckNullOrEmpty(MailTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Email is required.", "Inform");
+                return;
+            }
+            else
+            {
+                if (!BorrowerBUS.Instance.CheckEmail(MailTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Email incorrest", "Inform");
+                    return;
+                }
+            }
+
             var B = new DTO.BorrowerDTO();
             B.BorrowerID = BorrowerBUS.Instance.CreateBorrowerID();
             B.BorrowerName = BorrowerBUS.Instance.RemoveExtraWhitespaces(NameTextBox.Text.Trim());
@@ -49,7 +97,14 @@ namespace LibraryManagement.GUI
 
             bool d = BorrowerBUS.Instance.AddBorrower(B);
             if (d)
+            {
+                SetDayTime();
+                NameTextBox.Text = "";
+                AddressTextBox.Text = "";
+                PhoneTextBox.Text = "";
+                MailTextBox.Text = "";
                 MessageBox.Show("A borrower have been added", "Inform");
+            } 
             else
                 MessageBox.Show("Can't add this borrower.", "Inform");
         }
@@ -58,91 +113,6 @@ namespace LibraryManagement.GUI
         {
             this.Close();
         }
-
-        private void NameTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(NameTextBox.Text.Trim()))
-            {
-                errorProvider.SetError(NameTextBox, "Borrower name is required.");
-                // e.fo
-                e.Cancel = true;
-
-                //  borrowerIdTxt.Focus();
-            }
-            else
-            {
-                e.Cancel = false;
-                errorProvider.SetError(NameTextBox, string.Empty);
-            }
-        }
-
-        private void AddressTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(AddressTextBox.Text.Trim()))
-            {
-                errorProvider.SetError(AddressTextBox, "Borrower address is required.");
-                e.Cancel = true;
-
-                //  borrowerIdTxt.Focus();
-            }
-            else
-            {
-                e.Cancel = false;
-                errorProvider.SetError(AddressTextBox, string.Empty);
-            }
-        }
-
-        private void PhoneTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(PhoneTextBox.Text.Trim()))
-            {
-                errorProvider.SetError(PhoneTextBox, "Borrower address is required.");
-                // e.fo
-                e.Cancel = true;
-
-                //  borrowerIdTxt.Focus();
-            }
-            else
-            {
-                if (!BorrowerBUS.Instance.CheckPhoneNumber(PhoneTextBox.Text.Trim()))
-                {
-                    MessageBox.Show("A phone number incorrest.", "Inform");
-                    errorProvider.SetError(MailTextBox, "Borrower email incorrect.");
-                    //e.Cancel = true;
-                }
-                else
-                {
-                    e.Cancel = false;
-                    errorProvider.SetError(MailTextBox, string.Empty);
-                }
-
-            }
-        }
-
-        private void MailTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(MailTextBox.Text.Trim()))
-            {
-                errorProvider.SetError(MailTextBox, "Borrower address is required.");
-                MessageBox.Show("Textbox not empty.", "Inform");
-                e.Cancel = true;
-
-                //  borrowerIdTxt.Focus();
-            }
-            else
-            {
-                if (!BorrowerBUS.Instance.CheckEmail(MailTextBox.Text.Trim()))
-                {
-                    MessageBox.Show("A email incorrest.", "Inform");
-                    errorProvider.SetError(MailTextBox, "Borrower email incorrect.");
-                    e.Cancel = true;
-                }
-                else
-                {
-                    e.Cancel = false;
-                    errorProvider.SetError(MailTextBox, string.Empty);
-                }
-            }
-        }
+   
     }
 }

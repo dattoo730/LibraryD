@@ -38,6 +38,7 @@
             this.transactionManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrowBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,11 +49,12 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bookManagementToolStripMenuItem,
             this.borrowerManagementToolStripMenuItem,
-            this.transactionManagementToolStripMenuItem});
+            this.transactionManagementToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(854, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,14 +70,16 @@
             // addBookToolStripMenuItem
             // 
             this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
-            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.addBookToolStripMenuItem.Text = "Add Book";
+            this.addBookToolStripMenuItem.Click += new System.EventHandler(this.addBookToolStripMenuItem_Click);
             // 
             // searchBookToolStripMenuItem
             // 
             this.searchBookToolStripMenuItem.Name = "searchBookToolStripMenuItem";
-            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchBookToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.searchBookToolStripMenuItem.Text = "Search Book";
+            this.searchBookToolStripMenuItem.Click += new System.EventHandler(this.searchBookToolStripMenuItem_Click);
             // 
             // borrowerManagementToolStripMenuItem
             // 
@@ -89,14 +93,14 @@
             // addBorrowerToolStripMenuItem
             // 
             this.addBorrowerToolStripMenuItem.Name = "addBorrowerToolStripMenuItem";
-            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.addBorrowerToolStripMenuItem.Text = "Add Borrower";
             this.addBorrowerToolStripMenuItem.Click += new System.EventHandler(this.addBorrowerToolStripMenuItem_Click);
             // 
             // searchBorrowerToolStripMenuItem
             // 
             this.searchBorrowerToolStripMenuItem.Name = "searchBorrowerToolStripMenuItem";
-            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchBorrowerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.searchBorrowerToolStripMenuItem.Text = "Search Borrower";
             this.searchBorrowerToolStripMenuItem.Click += new System.EventHandler(this.searchBorrowerToolStripMenuItem_Click);
             // 
@@ -112,35 +116,44 @@
             // borrowBooksToolStripMenuItem
             // 
             this.borrowBooksToolStripMenuItem.Name = "borrowBooksToolStripMenuItem";
-            this.borrowBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.borrowBooksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.borrowBooksToolStripMenuItem.Text = "Borrow Books";
             this.borrowBooksToolStripMenuItem.Click += new System.EventHandler(this.borrowBooksToolStripMenuItem_Click);
             // 
             // returnBooksToolStripMenuItem
             // 
             this.returnBooksToolStripMenuItem.Name = "returnBooksToolStripMenuItem";
-            this.returnBooksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.returnBooksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.returnBooksToolStripMenuItem.Text = "Return Books";
             this.returnBooksToolStripMenuItem.Click += new System.EventHandler(this.returnBooksToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainPanel
             // 
             this.MainPanel.Location = new System.Drawing.Point(12, 27);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(839, 509);
+            this.MainPanel.Size = new System.Drawing.Size(830, 500);
             this.MainPanel.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 548);
+            this.ClientSize = new System.Drawing.Size(854, 541);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Library Management";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -161,5 +174,6 @@
         private System.Windows.Forms.ToolStripMenuItem borrowBooksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnBooksToolStripMenuItem;
         private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
